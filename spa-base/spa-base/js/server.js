@@ -38,8 +38,8 @@ require('../app/routes')(app); // configure our routes
 // startup our app at http://localhost:8080
 app.listen(port);
 
-// shoutout to the user                     
-console.log('Magic happens on port ' + port);
+//let us know things are running               
+console.log('Running on port: ' + port);
 
 // expose app
 exports = module.exports = app;
@@ -62,7 +62,6 @@ var db = new Db('integration_tests', new Server("127.0.0.1", 27017,
 db.open(function (err, db) {
     assert.equal(null, err);
     console.log('connected to the db');
-    
     //// Add a user to the database
     //db.addUser('user', 'name', function (err, result) {
     //    assert.equal(null, err);
