@@ -52,6 +52,7 @@
     <PackageCertificateKeyFile>App1_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="AppxManifest.xml" />
     <Content Include="app\config\db.js" />
     <Content Include="app\routes.js" />
     <Content Include="images\logo.scale-100.png" />
