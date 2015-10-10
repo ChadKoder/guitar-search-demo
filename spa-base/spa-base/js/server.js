@@ -99,18 +99,18 @@ var db = new Db('integration_tests', new Server("127.0.0.1", 27017,
  { auto_reconnect: false, poolSize: 4 }), { w: 0, native_parser: false });
 
 // Establish connection to db
-db.open(function (err, db) {
-    assert.equal(null, err);
-    console.log('connected to the server successfully.');
-    //// Add a user to the database
-    //db.addUser('user', 'name', function (err, result) {
-    //    assert.equal(null, err);
+//db.open(function (err, db) {
+//    assert.equal(null, err);
+//    console.log('connected to the server successfully.');
+//    //// Add a user to the database
+//    //db.addUser('user', 'name', function (err, result) {
+//    //    assert.equal(null, err);
 
-    //    // Authenticate
-    //    db.authenticate('user', 'name', function (err, result) {
-    //        assert.equal(true, result);
+//    //    // Authenticate
+//    //    db.authenticate('user', 'name', function (err, result) {
+//    //        assert.equal(true, result);
 
-    //        db.close();
-    //    });
-    //});
-});
+//    //        db.close();
+//    //    });
+//    //});
+//});
