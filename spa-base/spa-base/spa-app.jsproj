@@ -63,6 +63,7 @@
     <Content Include="models\nerd.js" />
     <Content Include="package.json" />
     <Content Include="public\views\index.html" />
+    <Content Include="test-service-remove-me\db-test-conn.js" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.2.0, Version=1.0" />
