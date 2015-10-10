@@ -3,17 +3,21 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var path = require('path');
 // configuration ===========================================
 
-// config files
+var path = require('path');
+var mongoose = require('mongoose');
 var db = require(path.resolve('../app/config/db'));
-
-// set our port
 var port = process.env.PORT || 8080;
 
 // connect to our mongoDB database 
- // ongoose.connect(db.url); 
+// define our nerd model
+ //module.exports allows us to pass this to other files when it is called
+module.exports = mongoose.model('mongoose', {
+    name: { type: String, default: '' }
+});
+
+mongoose.connect(db.url); 
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
