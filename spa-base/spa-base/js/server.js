@@ -13,7 +13,7 @@ var db = require(path.resolve('../app/config/db'));
 var port = process.env.PORT || 8080;
 
 // connect to our mongoDB database 
- //mongoose.connect(db.url); 
+ // ongoose.connect(db.url); 
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -41,5 +41,36 @@ app.listen(port);
 // shoutout to the user                     
 console.log('Magic happens on port ' + port);
 
-// expose app           
+// expose app
 exports = module.exports = app;
+
+//var Db = require('mongodb').Db,
+//    MongoClient = require('mongodb').MongoClient,
+//    Server = require('mongodb').Server,
+//    ReplSetServers = require('mongodb').ReplSetServers,
+//    ObjectID = require('mongodb').ObjectID,
+//    Binary = require('mongodb').Binary,
+//    GridStore = require('mongodb').GridStore,
+//    Code = require('mongodb').Code,
+//    BSON = require('mongodb').pure().BSON,
+//    assert = require('assert');
+
+//var db = new Db('integration_tests', new Server("127.0.0.1", 27017,
+// { auto_reconnect: false, poolSize: 4 }), { w: 0, native_parser: false });
+
+//// Establish connection to db
+//db.open(function (err, db) {
+//    assert.equal(null, err);
+//    console.log('connected to the db');
+//    //// Add a user to the database
+//    //db.addUser('user', 'name', function (err, result) {
+//    //    assert.equal(null, err);
+
+//    //    // Authenticate
+//    //    db.authenticate('user', 'name', function (err, result) {
+//    //        assert.equal(true, result);
+
+//    //        db.close();
+//    //    });
+//    //});
+//});
