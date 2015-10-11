@@ -1,4 +1,17 @@
 ﻿// app/routes.js
+var express = require('express');
+var app = express();
+
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/bower_components', express.static(__dirname + '/../bower_components'));
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/partials', express.static(__dirname + '/partials'));
+
+app.all('/*', function (req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('index.html', { root: __dirname });
+});
+
 
 // grab the nerd model we just created
 var Nerd = require('../models/nerd');
@@ -31,6 +44,7 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         var path = require('path');
         res.sendfile(path.resolve('../public/views/index.html')); // load our public/index.html file
+        //res.sendFile(path.join(__dirname, '../public/views', 'index.html'));
     });
 
 };
