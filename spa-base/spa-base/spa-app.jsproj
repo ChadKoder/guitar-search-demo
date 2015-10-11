@@ -72,7 +72,6 @@
     <Content Include="public\views\home.html" />
     <Content Include="public\views\index.html" />
     <Content Include="public\views\nerd.html" />
-    <Content Include="test-service-remove-me\db-test-conn.js" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.2.0, Version=1.0" />
