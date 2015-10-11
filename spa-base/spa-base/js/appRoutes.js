@@ -5,12 +5,15 @@ angular.module('appRoutes', []).config([
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home.html',
-                controller: 'MainController'
+                controller: 'MainCtrl'
             })
             .when('/nerds', {
                 templateUrl: 'views/nerd.html',
-                controller: 'NerdController'
-            });
+                controller: 'NerdCtrl'
+            }).
+            otherwise({
+            redirectTo: 'views/index.html'
+        });
 
         $locationProvider.html5Mode(true);
 

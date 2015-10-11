@@ -1,18 +1,27 @@
-﻿// modules =================================================
+﻿// server.js
+
+// modules =================================================
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+
 // configuration ===========================================
 
+// config files
+//var db = require('../config/db');
 
 var path = require('path');
 //var mongoose = require('mongoose');
-var mongoClient = require('mongodb').MongoClient;
+
 var db = require(path.resolve('../app/config/db'));
+
+// set our port
 var port = process.env.PORT || 8080;
 
-app.use('/libs', express.static(__dirname + '/libs'));
+// connect to our mongoDB database 
+// (uncomment after you enter in your own credentials in config/db.js)
+// mongoose.connect(db.url); 
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -31,45 +40,14 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require('../app/routes')(app); // configure our routes
+require(path.resolve('../app/routes'))(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
 
-//let us know things are running               
-console.log('Running on port: ' + port);
+// shoutout to the user                     
+console.log('Magic happens on port ' + port);
 
-// expose app
+// expose app           
 exports = module.exports = app;
-
-//var Db = require('mongodb').Db,
-//    MongoClient = require('mongodb').MongoClient,
-//    Server = require('mongodb').Server,
-//    ReplSetServers = require('mongodb').ReplSetServers,
-//    ObjectID = require('mongodb').ObjectID,
-//    Binary = require('mongodb').Binary,
-//    GridStore = require('mongodb').GridStore,
-//    Code = require('mongodb').Code,
-//   // BSON = require('mongodb').pure().BSON,
-//    assert = require('assert');
-
-//var db = new Db('integration_tests', new Server("127.0.0.1", 27017,
-// { auto_reconnect: false, poolSize: 4 }), { w: 0, native_parser: false });
-
-// Establish connection to db
-//db.open(function (err, db) {
-//    assert.equal(null, err);
-//    console.log('connected to the server successfully.');
-//    //// Add a user to the database
-//    //db.addUser('user', 'name', function (err, result) {
-//    //    assert.equal(null, err);
-
-//    //    // Authenticate
-//    //    db.authenticate('user', 'name', function (err, result) {
-//    //        assert.equal(true, result);
-
-//    //        db.close();
-//    //    });
-//    //});
-//});
