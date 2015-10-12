@@ -1,6 +1,6 @@
 ﻿// grab the nerd model we just created
 var path = require('path');
-var Nerd = require(path.resolve('../models/nerd'));
+var Nerd = require(path.resolve('app/models/nerd'));
 
 module.exports = function (app) {
 
@@ -30,7 +30,7 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         var path = require('path');
 
-        res.sendFile(path.resolve('../public/views/index.html')); // load our public/index.html file
+        res.sendfile(path.resolve('../public/views/index.html')); // load our public/index.html file
     });
 
 };

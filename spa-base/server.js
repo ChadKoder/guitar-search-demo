@@ -14,7 +14,7 @@ var methodOverride = require('method-override');
 var path = require('path');
 //var mongoose = require('mongoose');
 
-var db = require(path.resolve('../app/config/db'));
+var db = require(path.resolve('config/db'));
 
 // set our port
 var port = process.env.PORT || 8080;
@@ -40,14 +40,14 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
-require(path.resolve('../app/routes'))(app); // configure our routes
+require(path.resolve('app/routes'))(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
 
-// shoutout to the user                     
-console.log('Magic happens on port ' + port);
+// let us know things are running                    
+console.log('Running on port: ' + port);
 
 // expose app           
 exports = module.exports = app;
