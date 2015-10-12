@@ -47,7 +47,7 @@ require(path.resolve('app/routes'))(app); // configure our routes
 app.listen(port);
 
 // let us know things are running                    
-console.log('Running on port: ' + port);
+console.log('Magic happens on port ' + port);
 
 // expose app           
 exports = module.exports = app;
