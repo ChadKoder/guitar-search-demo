@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "spa-base(1)", "http://localhost:63911", "{DAC5259B-03D1-4A3D-9979-7ADD194993E3}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "job-search", "http://localhost:63914", "{5DB1B261-AD15-400F-AFD2-506C6D435AB4}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_63911"
-		Debug.AspNetCompiler.PhysicalPath = "..\spa-base\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63911\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63914"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-job-search\job-search\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63914\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_63911"
-		Release.AspNetCompiler.PhysicalPath = "..\spa-base\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63911\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63914"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-job-search\job-search\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63914\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\spa-base\"
+		SlnRelativePath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-job-search\job-search\"
 	EndProjectSection
 EndProject
 Global
@@ -29,8 +29,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DAC5259B-03D1-4A3D-9979-7ADD194993E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAC5259B-03D1-4A3D-9979-7ADD194993E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB1B261-AD15-400F-AFD2-506C6D435AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB1B261-AD15-400F-AFD2-506C6D435AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

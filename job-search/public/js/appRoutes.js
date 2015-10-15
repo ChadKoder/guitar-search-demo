@@ -5,11 +5,11 @@ angular.module('appRoutes', []).config([
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home.html',
-                controller: 'MainCtrl'
+                controller: 'HomeCtrl'
             })
             .when('/nerds', {
-                templateUrl: 'views/nerd.html',
-                controller: 'NerdCtrl'
+                templateUrl: 'views/search.html',
+                controller: 'SearchCtrl'
             }).
             otherwise({
             redirectTo: 'views/index.html'

@@ -9,18 +9,18 @@ module.exports = function (app) {
     // authentication routes
 
     // sample api route
-    app.get(path.resolve('/api/nerds'), function (req, res) {
-        // use mongoose to get all nerds in the database
-        Nerd.find(function (err, nerds) {
+    //app.get(path.resolve('/api/nerds'), function (req, res) {
+    //    // use mongoose to get all nerds in the database
+    //    Nerd.find(function (err, nerds) {
 
-            // if there is an error retrieving, send the error. 
-            // nothing after res.send(err) will execute
-            if (err)
-                res.send(err);
+    //        // if there is an error retrieving, send the error. 
+    //        // nothing after res.send(err) will execute
+    //        if (err)
+    //            res.send(err);
 
-            res.json(nerds); // return all nerds in JSON format
-        });
-    });
+    //        res.json(nerds); // return all nerds in JSON format
+    //    });
+    //});
 
     // route to handle creating goes here (app.post)
     // route to handle delete goes here (app.delete)
