@@ -69,7 +69,16 @@ module.exports = function(grunt) {
 				'public/libs/angular-mocks/angular-mocks.js',
 				'public/js/**/*.js',
 				'src/tests/*.js'
-				]
+				],
+				plugins: [
+				'karma-phantomjs-launcher',
+				'karma-jasmine',
+				'karma-junit-reporter'
+				],
+				reporters: ['progress', 'junit'],
+				junitReporter: {
+					outputFile: '../test-results.xml'
+				}
 			}
 		}
 	}

@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.suo
 .grunt
+test-results.xml
 
 pids
 logs
