@@ -9,7 +9,9 @@ module.exports = function(grunt) {
       dist: {
         //src: ['public/js/*.js'],
 		//src: ['public/libs/**/*.js', 'public/js/**/*.js', 'public/libs/angular-route/*.js', 'public/libs/bootstrap/*.js'],			 
-		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/js/**/*.js', 'public/libs/angular-route/*.js', 'public/libs/bootstrap/*.js'],			 
+		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 
+		'public/js/**/*.js', 'public/libs/angular-route/*.js',
+		'public/libs/bootstrap/*.js'],			 
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -39,41 +41,54 @@ module.exports = function(grunt) {
         }
       }
     },
-	//jasmine: {
+	jasmine: {
 		 // Your project's source files
       //src : ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/js/**/*.js'],
-	//  src : ['public/libs/angular/*.js'],
+	  //src : ['public/libs/angular/*.js'],
+		src: ['public/js/services/testService.js', 'node_modules/**/*.js'],//, 'public/libs/angular/angular.min.js'],
       // Your Jasmine spec files
-  //    specs : 'src/tests/**/*spec.js',
+     specs : 'src/tests/*.spec.js'
 	  //vendor: [
                 //'public//dist/jquery.js'                
             //]
       // Your spec helper files
     //  helpers : 'specs/helpers/*.js'	  
-	//},
+	},
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']//, 'qunit']
-    }	
+    },
+	karma: {
+		unit: {
+			options: {
+				frameworks: ['jasmine'],
+				singleRun: true,
+				browsers: ['PhantomJS'],
+				files: [
+				'public/libs/angular/angular.js',
+				'public/libs/angular-mocks/angular-mocks.js',
+				'public/js/**/*.js',
+				'src/tests/*.js'
+				]
+			}
+		}
+	}
   });
 
   //if (grunt.option('debug')){
-	//  console.log(grunt.config('jshint.files'));
+	// console.log(grunt.config('jshint.files'));
   //}
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
- // grunt.loadNpmTasks('grunt-contrib-qunit');
- //grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat'); 
-  
-   //grunt.registerTask('default', 'jasmine');
-
+  grunt.loadNpmTasks('grunt-karma');
+      
  // grunt.registerTask('test', ['jshint']);//, 'qunit']);
 
   //grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
   //grunt.registerTask('default', ['jshint', 'concat', 'jasmine', 'uglify']);
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'karma', 'concat', 'uglify']);
 
 };
