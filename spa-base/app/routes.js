@@ -30,7 +30,7 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         var path = require('path');
 
-        res.sendfile(path.resolve('../public/views/index.html')); // load our public/index.html file
+        res.sendfile(path.resolve('public/index.html')); // load our public/index.html file
     });
 
 };
