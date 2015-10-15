@@ -7,12 +7,12 @@ angular.module('appRoutes', []).config([
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl'
             })
-            .when('/nerds', {
+            .when('/search', {
                 templateUrl: 'views/search.html',
                 controller: 'SearchCtrl'
             }).
             otherwise({
-            redirectTo: 'views/index.html'
+                redirectTo: 'index.html'
         });
 
         $locationProvider.html5Mode(true);

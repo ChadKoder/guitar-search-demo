@@ -1,3 +1,3 @@
 ﻿//js/app.js
 
-angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'SearchCtrl', 'searchService']);
+angular.module('jobSearchApp', ['ngRoute', 'appRoutes', 'HomeCtrl', 'MainCtrl', 'SearchCtrl', 'searchService']);

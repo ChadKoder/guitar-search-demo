@@ -1,5 +1,4 @@
-﻿//js/controllers/MainCtrl.js
+﻿//js/controllers/HomeCtrl.js
 angular.module('HomeCtrl', []).controller('HomeCtrl', function ($scope) {
-    alert('HomeCtrl!');
     $scope.tagline = 'HOME CTRL!';
 });

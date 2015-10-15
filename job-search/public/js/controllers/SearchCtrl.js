@@ -1,5 +1,5 @@
 ﻿//js/controllers/NerdCtrl.js
 angular.module('SearchCtrl', []).controller('SearchCtrl', function ($scope) {
-    alert('NerdCtrl!');
+    alert('SearchCtrl!');
     $scope.tagline = 'search!!!!';
 });
