@@ -41,19 +41,6 @@ module.exports = function(grunt) {
         }
       }
     },
-	jasmine: {
-		 // Your project's source files
-      //src : ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/js/**/*.js'],
-	  //src : ['public/libs/angular/*.js'],
-		src: ['public/js/services/testService.js', 'node_modules/**/*.js'],//, 'public/libs/angular/angular.min.js'],
-      // Your Jasmine spec files
-     specs : 'src/tests/*.spec.js'
-	  //vendor: [
-                //'public//dist/jquery.js'                
-            //]
-      // Your spec helper files
-    //  helpers : 'specs/helpers/*.js'	  
-	},
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']//, 'qunit']
@@ -61,6 +48,7 @@ module.exports = function(grunt) {
 	karma: {
 		unit: {
 			options: {
+				colors: true,
 				frameworks: ['jasmine'],
 				singleRun: true,
 				browsers: ['PhantomJS'],
@@ -75,10 +63,11 @@ module.exports = function(grunt) {
 				'karma-jasmine',
 				'karma-junit-reporter'
 				],
-				reporters: ['progress', 'junit'],
+				reporters: ['dots', 'junit'],
 				junitReporter: {
 					outputFile: '../test-results.xml'
-				}
+				}//,
+				//logLevel: 'LOG_DISABLE'
 			}
 		}
 	}
@@ -96,8 +85,6 @@ module.exports = function(grunt) {
       
  // grunt.registerTask('test', ['jshint']);//, 'qunit']);
 
-  //grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  //grunt.registerTask('default', ['jshint', 'concat', 'jasmine', 'uglify']);
   grunt.registerTask('default', ['jshint', 'karma', 'concat', 'uglify']);
 
 };
