@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       dist: {
         //src: ['public/js/*.js'],
 		//src: ['public/libs/**/*.js', 'public/js/**/*.js', 'public/libs/angular-route/*.js', 'public/libs/bootstrap/*.js'],			 
-		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 
+		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/libs/angular-resource/*.js', 
 		'public/js/**/*.js', 'public/libs/angular-route/*.js',
 		'public/libs/bootstrap/*.js'],			 
         dest: 'dist/<%= pkg.name %>.js'
@@ -56,6 +56,7 @@ module.exports = function(grunt) {
 				'public/libs/angular/angular.js',
 				'public/libs/angular-mocks/angular-mocks.js',
 				'public/libs/angular-route/angular-route.js',
+				'public/libs/angular-resource/angular-resource.js',
 				'public/js/**/*.js',
 				'src/tests/**/*.js'
 				],
