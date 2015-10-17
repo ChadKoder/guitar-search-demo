@@ -55,8 +55,9 @@ module.exports = function(grunt) {
 				files: [
 				'public/libs/angular/angular.js',
 				'public/libs/angular-mocks/angular-mocks.js',
+				'public/libs/angular-route/angular-route.js',
 				'public/js/**/*.js',
-				'src/tests/*.js'
+				'src/tests/**/*.js'
 				],
 				plugins: [
 				'karma-phantomjs-launcher',

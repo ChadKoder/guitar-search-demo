@@ -9,7 +9,8 @@ angular.module('searchService', []).factory('searchService', ['$http', function 
     
     return {
         get: function (searchCriteria) {
-            return $http.get(baseUrl + searchMethod + '&keywords=' + searchCriteria + '&perpage=5');
+            // return $http.get(baseUrl + searchMethod + '&keywords=' + searchCriteria + '&perpage=5');
+            return searchCriteria;
         },
 
         create: function (data) {
@@ -21,3 +22,18 @@ angular.module('searchService', []).factory('searchService', ['$http', function 
         }
     };
 }]);
+
+//module.service('searchService', [
+//    function () {
+//        var self = this;
+
+//        self.getStuff = function () {
+//            return 'THIS IS A REAL... TEST';
+//            //return $q.all([billingFacilities.getFacilities(),
+//            //    billingSuppliers.getSuppliers()])
+//            //.then(self.createOptions);
+//        };
+        
+//        return self;
+//    }
+//]);

@@ -1,6 +1,5 @@
 ﻿//js/appRoutes.js
-
-angular.module('appRoutes', []).config([
+var module = angular.module('appRoutes', []).config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {

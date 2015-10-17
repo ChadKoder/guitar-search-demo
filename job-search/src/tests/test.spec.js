@@ -2,7 +2,7 @@
     var test;
 
     beforeEach(function() {
-        module('testService');
+        angular.mock.module('testService');
        
         inject(function(testService) {
             test = testService;

@@ -1,5 +1,5 @@
 ﻿//js/services/testService.js
-angular.module('testService', []).factory('testService', ['$http', function ($http) {
+angular.module('testService', []).factory('testService', [function () {
 
     return {
         get: function () {
