@@ -10,8 +10,7 @@ module.exports = function(grunt) {
         //src: ['public/js/*.js'],
 		//src: ['public/libs/**/*.js', 'public/js/**/*.js', 'public/libs/angular-route/*.js', 'public/libs/bootstrap/*.js'],			 
 		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/libs/angular-resource/*.js', 
-		'public/js/**/*.js', 'public/libs/angular-route/*.js',
-		'public/libs/bootstrap/*.js'],			 
+		'public/js/**/*.js', 'public/libs/bootstrap/*.js'],			 
         dest: 'dist/<%= pkg.name %>.js'
       }
     },

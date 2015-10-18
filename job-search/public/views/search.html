@@ -5,9 +5,9 @@
     
     <div>total listings: {{ allListings.length }}</div>
     <!--<div ng-repeat="sa in allListings | orderBy:['-StockAreaTypeDescription', 'StockAreaDescription']"> -->
-    <div ng-repeat="listing in allListings">
+    <div ng-repeat="job in allListings">
         <div class="row-fluid">
-            <li>{{ listing.title }}</li>
+            <li>{{ job.title }}</li>
         </div>
         <!--<button id="StockAreaButton" style="width: 100%; margin-top:7px; text-align:left; min-height:50px" ng-click="(sa.selected = !sa.selected)" ng-class="{true: 'btn btn-primary', false: 'btn'}[sa.selected]">
             <div class="row-fluid">
