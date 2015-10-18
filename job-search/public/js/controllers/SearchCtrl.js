@@ -5,7 +5,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 's
     alert('loading SearchCtrl');
     //var data = searchService.get();
     $scope.allListings = searchService.get(); //.listings.listing;
-
+    $scope.tagline = 'SEARCH CTRL!';
     
     //var tempUrl = 'http://www.authenticjobs.com/api/?api_key=94b7acb384894b18cdca339bab11b574&method=aj.jobs.search&format=json&keywords=php,mysql&perpage=1&callback=JSON_CALLBACK';
     //$http.jsonp(tempUrl).success(function (data) {
