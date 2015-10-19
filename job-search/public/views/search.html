@@ -1,24 +1,18 @@
 ﻿<!-- public/views/search.html -->
+<div ng-show="allListings.length === 0"> No results found...</div>
 
-<!--<div class="jumbotron text-center" ng-controller="SearchCtrl">-->
-    <h1>Search for a job!</h1>
-    
-    <div>total listings: {{ allListings.length }}</div>
-    <!--<div ng-repeat="sa in allListings | orderBy:['-StockAreaTypeDescription', 'StockAreaDescription']"> -->
-    <div ng-repeat="job in allListings">
-        <div class="row-fluid">
-            <li>{{ job.title }}</li>
-        </div>
-        <!--<button id="StockAreaButton" style="width: 100%; margin-top:7px; text-align:left; min-height:50px" ng-click="(sa.selected = !sa.selected)" ng-class="{true: 'btn btn-primary', false: 'btn'}[sa.selected]">
+<div class="input-group">
+    <input id="address" ng-model="searchText" placeholder="Search all remote jobs" class="form-control"> 
+    <span class="input-group-btn">
+         <button class="btn btn btn-primary" type="button" ng-click="search()">Search</button>
+    </span> 
+</div>
+
+<div ng-show="allListings.length > 0">
+        <div>total listings: {{ allListings.length }}</div>
+        <div ng-repeat="job in allListings">
             <div class="row-fluid">
-                <span class="pull-left"><h5><i ng-class="{true: 'icon-check', false: 'icon-check-empty'}[sa.selected]"></i>&nbsp&nbsp</h5></span>
-                <span class="pull-left"><h5>{{sa.StockAreaTypeDescription}}&nbsp</h5></span>
-                <span class="pull-left"><h5>{{sa.StockAreaName}}&nbsp-&nbsp</h5></span>
-                <span class="pull-left"><h5>{{sa.StockAreaDescription}}</h5></span>
-                <span class="pull-right"><h5 style="font-weight:normal;"><span class="badge badge-inverse" style="margin-top: 2px">{{sa.Needs | number: 0}}</span>&nbspItems Needed</h5></span>
+                <li>{{ job.title }}</li>
             </div>
-        </button>-->
+        </div>
     </div>
-
-    <p>{{ tagline }}</p>
-<!--</div>-->
