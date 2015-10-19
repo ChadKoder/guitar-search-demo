@@ -1,6 +1,6 @@
 ﻿<!-- public/views/search.html -->
 <div ng-show="allListings.length === 0"> No results found...</div>
-
+<div ng-show="searchError">SEARCH ERROR!!!</div>
 <div class="input-group">
     <input id="address" ng-model="searchText" placeholder="Search all remote jobs" class="form-control"> 
     <span class="input-group-btn">
