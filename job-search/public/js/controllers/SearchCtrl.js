@@ -15,8 +15,8 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 's
         $scope.allListings = data;
     };
 
-    ctrl.getSearchResultsFailure = function (data) {
-        $scope.allListings = null;
-        $scope.searchError = true;
-    };
+    //ctrl.getSearchResultsFailure = function (data) {
+    //    $scope.allListings = null;
+    //    $scope.searchError = true;
+    //};
 }]);
