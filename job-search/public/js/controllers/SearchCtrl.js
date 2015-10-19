@@ -6,7 +6,6 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 's
     $scope.search = function () {
         searchService.getSearchResults($scope.searchText)
        .success(function (data) {
-            alert(data.listings.listing[0]);
             $scope.allListings = data.listings.listing;
             //alert(data.listings.listing[0].id);
             //return JSON.stringify(data.listings.listing);
