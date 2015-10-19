@@ -5,10 +5,6 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 's
     $scope.searchText = null;
 
     $scope.search = function() {
-        //searchService.getSearchResults($scope.searchText).success(function(results) {
-        //    $scope.allListings = results.listings.listing;
-        //});
-
         searchService.getSearchResults(ctrl.getSearchResultsSuccess, $scope.searchText);
     };
 
