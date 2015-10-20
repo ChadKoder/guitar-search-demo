@@ -1,16 +1,19 @@
 ﻿//js/services/authenticService.js
 angular.module('gitHubService', []).factory('gitHubService', ['$http', function ($http) {
     
-    var buildGitHubUrl = function(searchText) {
-        return 'https://jobs.github.com/positions.json?description=' + searchText + '&location=&page=1&callback=JSON_CALLBACK';
+    var buildGitHubUrl = function (searchParam) {
+        return 'https://jobs.github.com/positions.json' + searchParam + '&location=&page=1&callback=JSON_CALLBACK';
+    };
+
+    var buildSearchParam = function(searchText) {
+        return '?description=' + searchText;
     };
 
     return {
-        getSearchResults: function (callback, searchText) {
+        getSearchResults: function (searchText) {
             $http.defaults.useXDomain = true;
-            var searchParameter = '&keywords=' + searchText;
 
-            var url = buildGitHubUrl(searchParameter);
+            var url = buildGitHubUrl(buildSearchParam(searchText));
             return $http.jsonp(url);
         }
     };
