@@ -1,6 +1,6 @@
 ﻿//js/services/usaJobsService.js
 angular.module('usaJobsService', []).factory('usaJobsService', ['$http', function ($http) {
-
+    //https://data.usajobs.gov/api/jobs?title=engineer
     var baseUrl = 'https://data.usajobs.gov/api/jobs?';
     
     var buildSearchParam = function(searchText) {
