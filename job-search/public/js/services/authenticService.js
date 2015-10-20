@@ -21,14 +21,6 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
             var searchParameter = '&keywords=' + searchText;
             var url = buildAuthenticJobsUrl(searchParameter);
             return $http.jsonp(url);
-        },
-
-        create: function (data) {
-            return 'created ' + data;
-        },
-
-        remove: function (id) {
-            return 'deleted ' + id;
         }
     };
 }]);
