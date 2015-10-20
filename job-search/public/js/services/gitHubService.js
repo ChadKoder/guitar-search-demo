@@ -6,7 +6,7 @@ angular.module('gitHubService', []).factory('gitHubService', ['$http', function 
     };
 
     var buildSearchParam = function(searchText) {
-        return '?description=' + searchText;
+        return '?title=' + searchText;
     };
 
     return {

@@ -15,10 +15,6 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
     var buildAuthenticJobsUrl = function (searchParam) {
         return baseUrl + searchMethod + '&telecommuting=1&format=json' + searchParam + '&perpage=5&callback=JSON_CALLBACK';
     };
-    
-    //var basicSuccess = function (data) {
-    //    return data;//.listings.listing;
-    //};
 
     return {
         getSearchResults: function (searchText) {
