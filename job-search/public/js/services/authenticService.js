@@ -17,8 +17,8 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
     return {
         getSearchResults: function (searchText) {
             $http.defaults.useXDomain = true;
-            var searchParameter = '&keywords=' + searchText;
 
+            var searchParameter = '&keywords=' + searchText;
             var url = buildAuthenticJobsUrl(searchParameter);
             return $http.jsonp(url);
         },
