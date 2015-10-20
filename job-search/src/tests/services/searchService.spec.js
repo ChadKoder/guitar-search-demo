@@ -1,16 +1,16 @@
-﻿describe("searchService", function () {
+﻿describe("authenticService", function () {
     var service;
 
     beforeEach(function () {
-        angular.mock.module('searchService');
+        angular.mock.module('authenticService');
 
-        //inject(function (searchService, _$resource_) {
-        //    test = searchService;
+        //inject(function (authenticService, _$resource_) {
+        //    test = authenticService;
         //    $resource = $_resource_;
         //});
 
-        inject(function (searchService) {
-            service = searchService;
+        inject(function (authenticService) {
+            service = authenticService;
         });
         //        spyOn(service, 'getSearchResults').and.returnValue($q.when(destination));
         //spyOn(ctrl, 'getFacValsSuccessHandler').and.callThrough();

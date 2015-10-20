@@ -9,22 +9,22 @@
 //    beforeEach(function () {
        
 //        angular.mock.module('SearchCtrl');
-//        angular.mock.module('searchService');
+//        angular.mock.module('authenticService');
 
-//        inject(function ($rootScope, $http, $controller, searchService) {
+//        inject(function ($rootScope, $http, $controller, authenticService) {
 //            rootScope = $rootScope;
 //            http = $http;
 //            $scope = $rootScope.$new();
-//            service = searchService;
-//            //spyOn(searchService, 'getSearchResults').and.returnValue('searchResults');
-//            searchService.getSearchResults = jasmine.createSpy('searchServiceGetSpy').and.callFake(function() {
+//            service = authenticService;
+//            //spyOn(authenticService, 'getSearchResults').and.returnValue('searchResults');
+//            authenticService.getSearchResults = jasmine.createSpy('authenticServiceGetSpy').and.callFake(function() {
 //                return 'searchResults';
 //            });//returnValue('searchResults');
 
 //            ctrl = $controller('SearchCtrl', {
 //                $scope: $scope,
 //                $http: http,
-//                searchService: service
+//                authenticService: service
 //            });
 //        });
 //    });
@@ -47,7 +47,7 @@
 //        //    expect(ctrl.getSearchResultsSuccess).toHaveBeenCalled();
 //        //});
 
-//        it("should call searchService.getSearchResults", function () {
+//        it("should call authenticService.getSearchResults", function () {
 //            // expect(service.getSearchResults).toHaveBeenCalled();
 //            expect(1).toEqual(1);
 //        });
