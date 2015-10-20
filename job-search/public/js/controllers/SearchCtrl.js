@@ -23,14 +23,14 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
 
         for (var j = 0; j < gitHubResults.length; j++) {
             results.push({
-                title: gitHubResults[j].title + '(GitHub Listing)',
+                title: gitHubResults[j].title + ' (GitHub Listing)',
                 description: gitHubResults[j].description
             });
         }
 
         for (var k = 0; k < usaJobsResults.length; k++) {
             results.push({
-                title: usaJobsResults[k].JobTitle + '(USAJobs Listing)',
+                title: usaJobsResults[k].JobTitle + ' (USAJobs Listing)',
                 description: usaJobsResults[k].JobSummary
             });
         }
