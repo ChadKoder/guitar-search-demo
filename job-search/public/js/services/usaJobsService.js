@@ -8,18 +8,15 @@ angular.module('usaJobsService', []).factory('usaJobsService', ['$http', functio
     };
 
     var buildUsaJobsUrl = function(searchParam) {
-        return baseUrl + searchParam;
+        return baseUrl + searchParam + '&callback=JSON_CALLBACK';
     };
     
     return {
-        getSearchResults: function (callback, searchText) {
+        getSearchResults: function (searchText) {
             $http.defaults.useXDomain = true;
 
             var url = buildUsaJobsUrl(buildSearchParam(searchText));
-            return $http.jsonp(url).success(function (data) {
-                alert(data);
-                callback(data);
-            });
+            return $http.jsonp(url);
         }
     };
 }]);
