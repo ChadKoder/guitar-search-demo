@@ -40,19 +40,13 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     };
     
     ctrl.loadSuccess = function (results) {
-        
-        //if (!results) {
-        //    $scope.se
-        //    return;
-        //}
+            var authenticResults = results[0].data.listings.listing;
+            var gitHubResults = results[1].data;
+            var usaJobsResults = results[2].data.JobData;
 
-        var authenticResults = results[0].data.listings.listing;
-        var gitHubResults = results[1].data;
-        var usaJobsResults = results[2].data.JobData;
-        
-        var allResults = ctrl.combineResults(authenticResults, gitHubResults, usaJobsResults);
+            var allResults = ctrl.combineResults(authenticResults, gitHubResults, usaJobsResults);
 
-        $scope.allListings = allResults;
+            $scope.allListings = allResults;
     };
 
     ctrl.loadFailure = function () {

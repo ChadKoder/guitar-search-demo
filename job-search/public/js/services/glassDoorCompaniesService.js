@@ -1,12 +1,12 @@
-﻿//js/services/authenticService.js
-angular.module('gitHubService', []).factory('gitHubService', ['$http', function ($http) {
+﻿//js/services/glassDoorJobsService.js
+angular.module('glassDoorCompaniesService', []).factory('glassDoorCompaniesService', ['$http', function ($http) {
 
     var self = {};
-    var buildGitHubUrl = function (searchParam) {
+    var buildGlassDoorCompaniesUrl = function (searchParam) {
         return 'https://jobs.github.com/positions.json?' + searchParam + '&location=&page=1&callback=JSON_CALLBACK';
     };
 
-    var buildSearchParam = function(text) {
+    var buildSearchParam = function (text) {
         return 'title=' + text.split(' ').join('+');
     };
 

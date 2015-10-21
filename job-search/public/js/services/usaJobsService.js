@@ -3,8 +3,8 @@ angular.module('usaJobsService', []).factory('usaJobsService', ['$http', functio
     //https://data.usajobs.gov/api/jobs?title=engineer
     var baseUrl = 'https://data.usajobs.gov/api/jobs?';
     
-    var buildSearchParam = function(searchText) {
-        return 'title=' + searchText;
+    var buildSearchParam = function(text) {
+        return 'title=' + text.split(' ').join('+');
     };
 
     var buildUsaJobsUrl = function(searchParam) {

@@ -14,12 +14,17 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
         return baseUrl + searchMethod + '&telecommuting=1&format=json' + searchParam + '&perpage=5&callback=JSON_CALLBACK';
     };
 
+    var buildSearchParameter = function (text) {
+        return '&keywords=' + text.split(' ').join('+');
+    };
+
     return {
         getSearchResults: function (searchText) {
             $http.defaults.useXDomain = true;
 
-            var searchParameter = '&keywords=' + searchText;
+            var searchParameter = buildSearchParameter(searchText);
             var url = buildAuthenticJobsUrl(searchParameter);
+            
             return $http.jsonp(url);
         }
     };

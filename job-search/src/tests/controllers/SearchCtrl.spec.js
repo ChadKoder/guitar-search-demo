@@ -97,18 +97,20 @@
         });
     });
 
-    describe('$scope.loadSuccess()', function() {
+    describe('$scope.loadSuccess()', function () {
+        var allResults;
         beforeEach(function () {
-            var allResults = [authenticResponse, gitHubResponse, usaJobsResponse];
+            allResults = [authenticResponse, gitHubResponse, usaJobsResponse];
             spyOn(ctrl, 'combineResults').and.returnValue('combinedResults');
-            ctrl.loadSuccess(allResults);
         });
 
         it('should call ctrl.combineResults', function () {
+            ctrl.loadSuccess(allResults);
             expect(ctrl.combineResults).toHaveBeenCalled();
         });
 
-        it('should set $scope.allListings', function() {
+        it('should set $scope.allListings', function () {
+            ctrl.loadSuccess(allResults);
             expect($scope.allListings).toBe('combinedResults');
         });
     });
