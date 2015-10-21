@@ -14,6 +14,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
 
     ctrl.combineResults = function(authenticResults, gitHubResults, usaJobsResults) {
         var results = [];
+        
         for (var i = 0; i < authenticResults.length; i++) {
             results.push({
                 title: authenticResults[i].title + ' (AuthenticJobs Listing)',
@@ -39,6 +40,12 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     };
     
     ctrl.loadSuccess = function (results) {
+        
+        //if (!results) {
+        //    $scope.se
+        //    return;
+        //}
+
         var authenticResults = results[0].data.listings.listing;
         var gitHubResults = results[1].data;
         var usaJobsResults = results[2].data.JobData;

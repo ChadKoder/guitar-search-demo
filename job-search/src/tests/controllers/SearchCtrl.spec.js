@@ -1,4 +1,4 @@
-﻿describe('SearchCtrl', function () {
+﻿describe('SearchCtrl', function() {
     var ctrl,
         rootScope,
         $scope,
@@ -7,6 +7,10 @@
         gitHubService = {},
         usaJobsService = {},
         http;
+
+    var authenticResponse = { "data": { "listings": { "listing": [{  "title": "title1", "description": "desc1" }] } } };
+    var gitHubResponse = [{ "title": "title2", "description": "desc2" }];
+    var usaJobsResponse = { "data": { "JobData": [{ "JobTitle": "title3", "JobSummary": "desc3" }] } };
 
     beforeEach(function () {
        
@@ -71,39 +75,55 @@
     });
 
     describe('ctrl.combineResults()', function () {
-        var allResults;
-
+        
         it('should combine all search results', function () {
-            var result1 = [{ title: 'title1', description: 'desc1' }];
-            var result2 = [{ title: 'title2', description: 'desc2' }];
-            var result3 = [{ JobTitle: 'title3', JobSummary: 'desc3' }];
-
-            allResults = ctrl.combineResults(result1, result2, result3);
+            var authenticData = authenticResponse.data.listings.listing;
+            var gitHubData = gitHubResponse;
+            var usaJobsData = usaJobsResponse.data.JobData;
+            var allResults = ctrl.combineResults(authenticData, gitHubData, usaJobsData);
+            
             expect(allResults.length).toBe(3);
             expect(allResults[0].title).toBe('title1 (AuthenticJobs Listing)');
             expect(allResults[1].title).toBe('title2 (GitHub Listing)');
             expect(allResults[2].title).toBe('title3 (USAJobs Listing)');
+
+            expect(allResults[0].description).toBe('desc1');
+            expect(allResults[1].description).toBe('desc2');
+            expect(allResults[2].description).toBe('desc3');
         });
-
-
     });
 
     describe('$scope.loadSuccess()', function() {
         beforeEach(function () {
-            $scope.searchText = 'findJobs';
-            $scope.search();
+            var allResults = [authenticResponse, gitHubResponse, usaJobsResponse];
+            spyOn(ctrl, 'combineResults').and.returnValue('combinedResults');
+            ctrl.loadSuccess(allResults);
         });
 
+        it('should call ctrl.combineResults', function () {
+            expect(ctrl.combineResults).toHaveBeenCalled();
+        });
 
+        it('should set $scope.allListings', function() {
+            expect($scope.allListings).toBe('combinedResults');
+        });
     });
 
-    describe('$scope.loadFailure()', function () {
+    describe('ctrl.loadFailure()', function () {
         beforeEach(function () {
-            $scope.searchText = 'findJobs';
-            $scope.search();
+            $scope.allListings = 'notNull';
+            $scope.searchError = false;
+
+            ctrl.loadFailure();
         });
 
+        it('should set $scope.allListings to null', function() {
+            expect($scope.allListings).toBe(null);
+        });
 
+        it('should set $scope.searchError to true', function () {
+            expect($scope.searchError).toBe(true);
+        });
     });
     //describe('$scope.search()', function () {
     //    beforeEach(function () {
