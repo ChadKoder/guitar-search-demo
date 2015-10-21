@@ -1,8 +1,8 @@
 ﻿describe("authenticService", function() {
     var authenticService,
         httpBackend,
-        url = 'http://www.authenticjobs.com/api/?api_key=94b7acb384894b18cdca339bab11b574&method=aj.jobs.search&telecommuting=1&format=json&keywords=title&perpage=5&callback=JSON_CALLBACK';
-    //http://www.authenticjobs.com/api/?api_key=94b7acb384894b18cdca339bab11b574&method=aj.jobs.search&telecommuting=1&format=json&keywords=title&perpage=5&callback=JSON_CALLBACK
+        url = 'http://www.authenticjobs.com/api/?api_key=ENTER_PERSONAL_API_KEY&method=aj.jobs.search&telecommuting=1&format=json&keywords=title&perpage=5&callback=JSON_CALLBACK';
+    
     beforeEach(function() {
         angular.mock.module('authenticService');
 
