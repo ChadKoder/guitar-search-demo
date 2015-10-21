@@ -9,6 +9,8 @@ lib-cov
 *.suo
 .grunt
 test-results.xml
+authentic-jobs-api-key.txt
+
 
 pids
 logs
