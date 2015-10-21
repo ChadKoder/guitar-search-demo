@@ -55,6 +55,10 @@
         expect($scope.searchText).toBe(null);
     });
 
+    it('should set $scope.searchError to false', function() {
+        expect($scope.searchError).toBe(false);
+    });
+
     describe('$scope.search()', function() {
         beforeEach(function () {
             $scope.searchText = 'findJobs';
