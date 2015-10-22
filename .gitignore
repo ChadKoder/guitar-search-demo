@@ -10,7 +10,7 @@ lib-cov
 .grunt
 test-results.xml
 authentic-jobs-api-key.txt
-
+glass-door-partner-key.txt
 
 pids
 logs
