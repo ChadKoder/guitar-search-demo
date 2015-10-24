@@ -9,8 +9,8 @@ lib-cov
 *.suo
 .grunt
 test-results.xml
-authentic-jobs-api-key.txt
-glass-door-partner-key.txt
+authentic-jobs-api-key.xml
+glass-door-partner-key.xml
 
 pids
 logs
