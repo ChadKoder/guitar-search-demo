@@ -1,5 +1,4 @@
 ﻿<!-- public/views/search.html -->
-<div ng-show="allListings.length === 0"> No results found...</div>
 <div ng-show="searchError">SEARCH ERROR!!!</div>
 
 <div>powered by: 
@@ -7,7 +6,13 @@
         <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Glass Door Job Search' />
     </a>
     <a href='http://www.authenticjobs.com'>
-          <img src='../img/authenticJobs.png' title='AuthenticJobs search' />
+        <img src='../img/authenticJobs.png' title='AuthenticJobs search' />
+    </a>
+    <a href='http://www.usajobs.gov'>
+        <img src='../img/usaJobs.jpg' title='USAJobs search' />
+    </a>
+    <a href='http://jobs.github.com/positions'>
+        <img src='../img/gitHub.png' title='GitHub Jobs search' />
     </a>
 </div>
 
@@ -17,7 +22,7 @@
          <button class="btn btn btn-primary" type="button" ng-click="search()">Search</button>
     </span> 
 </div>
-
+<div ng-show="allListings.length === 0"> No results found...</div>
 <div ng-show="allListings.length > 0">
     <div>total listings: {{ allListings.length }}</div>
     <div ng-repeat="job in allListings">
@@ -26,3 +31,5 @@
         </div>
     </div>
 </div>
+
+<div ng-bind="test"></div>

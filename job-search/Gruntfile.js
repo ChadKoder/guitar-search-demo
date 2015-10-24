@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       dist: {       	 
 		src: ['public/libs/angular/*.js', 'public/libs/angular-route/*.js', 'public/libs/angular-resource/*.js', 
-		'public/js/**/*.js', 'public/libs/bootstrap/*.js'],			 
+		'public/js/**/*.js', 'public/libs/bootstrap/*.js', 'config/*.js'],			 
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
   //  },
     jshint: {
       //files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-	  files: ['Gruntfile.js', 'public/js/**/*.js'],//, 'public/js/controllers/*.js', 'public/js/services/*.js'],	  
+	  files: ['Gruntfile.js', 'public/js/**/*.js','config/*.js'],//, 'public/js/controllers/*.js', 'public/js/services/*.js'],	  
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -55,7 +55,8 @@ module.exports = function(grunt) {
 				'public/libs/angular-route/angular-route.js',
 				'public/libs/angular-resource/angular-resource.js',
 				'public/js/**/*.js',
-				'src/tests/**/*.js'
+				'src/tests/**/*.js',
+				'config/*.js'
 				],
 				plugins: [
 				'karma-phantomjs-launcher',

@@ -9,11 +9,11 @@ var module = angular.module('appRoutes', []).config([
             .when('/search', {
                 templateUrl: 'views/search.html',
                 controller: 'SearchCtrl'
-            }).
-            otherwise({
+            })
+            .otherwise({
                 redirectTo: 'index.html'
         });
-
+        
         $locationProvider.html5Mode(true);
 
     }

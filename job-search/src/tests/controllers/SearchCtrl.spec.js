@@ -78,24 +78,24 @@
         });
     });
 
-    describe('ctrl.combineResults()', function () {
+    //describe('ctrl.combineResults()', function () {
         
-        it('should combine all search results', function () {
-            var authenticData = authenticResponse.data.listings.listing;
-            var gitHubData = gitHubResponse;
-            var usaJobsData = usaJobsResponse.data.JobData;
-            var allResults = ctrl.combineResults(authenticData, gitHubData, usaJobsData);
+    //    it('should combine all search results', function () {
+    //        var authenticData = authenticResponse.data.listings.listing;
+    //        var gitHubData = gitHubResponse;
+    //        var usaJobsData = usaJobsResponse.data.JobData;
+    //        var allResults = ctrl.combineResults(authenticData, gitHubData, usaJobsData);
             
-            expect(allResults.length).toBe(3);
-            expect(allResults[0].title).toBe('title1 (AuthenticJobs Listing)');
-            expect(allResults[1].title).toBe('title2 (GitHub Listing)');
-            expect(allResults[2].title).toBe('title3 (USAJobs Listing)');
+    //        expect(allResults.length).toBe(3);
+    //        expect(allResults[0].title).toBe('title1 (AuthenticJobs Listing)');
+    //        expect(allResults[1].title).toBe('title2 (GitHub Listing)');
+    //        expect(allResults[2].title).toBe('title3 (USAJobs Listing)');
 
-            expect(allResults[0].description).toBe('desc1');
-            expect(allResults[1].description).toBe('desc2');
-            expect(allResults[2].description).toBe('desc3');
-        });
-    });
+    //        expect(allResults[0].description).toBe('desc1');
+    //        expect(allResults[1].description).toBe('desc2');
+    //        expect(allResults[2].description).toBe('desc3');
+    //    });
+    //});
 
     describe('$scope.loadSuccess()', function () {
         var allResults;
