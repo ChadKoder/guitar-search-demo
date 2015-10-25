@@ -54,6 +54,7 @@ module.exports = function(grunt) {
 				'public/libs/angular-mocks/angular-mocks.js',
 				'public/libs/angular-route/angular-route.js',
 				'public/libs/angular-resource/angular-resource.js',
+				'public/libs/underscore/underscore.js',
 				'public/js/**/*.js',
 				'src/tests/**/*.js',
 				'config/*.js'
