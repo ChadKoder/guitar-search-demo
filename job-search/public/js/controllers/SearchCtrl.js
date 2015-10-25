@@ -1,5 +1,6 @@
 ﻿//public/js/controllers/SearchCtrl
-angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$q', 'authenticService', 'gitHubService', 'usaJobsService', function ($scope, $http, $q, authenticService, gitHubService, usaJobsService) {
+angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$q', 'authenticService', 'gitHubService',
+    'usaJobsService', 'glassDoorJobsService', function ($scope, $http, $q, authenticService, gitHubService, usaJobsService, glassDoorJobsService) {
     var ctrl = this;
 
     $scope.searchText = null;
@@ -8,7 +9,8 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     $scope.search = function () {
         $q.all([authenticService.getSearchResults($scope.searchText),
                 gitHubService.getSearchResults($scope.searchText),
-                usaJobsService.getSearchResults($scope.searchText)])
+                usaJobsService.getSearchResults($scope.searchText),
+                glassDoorJobsService.getSearchResults($scope.searchText)])
             .then(ctrl.loadSuccess, ctrl.loadFailure);
     };
 
@@ -16,15 +18,18 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         var authenticData = data[0].data.listings.listing;
         var gitHubData = data[1].data;
         var usaJobsData = data[2].data.JobData;
-
+        var glassDoorJobsData = data[3].data.response.results;
+     
         var authenticResults = ctrl.buildAuthenticResults(authenticData);
         var gitHubResults = ctrl.buildGitHubResults(gitHubData);
         var usaJobsResults = ctrl.buildUsaJobsResults(usaJobsData);
+        var glassDoorResults = ctrl.buildGlassDoorResults(glassDoorJobsData);
 
         var results = [];
         results.push.apply(results, authenticResults);
         results.push.apply(results, gitHubResults);
         results.push.apply(results, usaJobsResults);
+        results.push.apply(results, glassDoorResults);
         
         return results;
     };
@@ -47,7 +52,25 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         
         return gitHubResults;
     };
-    
+
+    ctrl.buildGlassDoorResults = function(results) {
+        var glassDoorResults = [];
+        if (_.isEmpty(results)) {
+            console.log('no search results found from glass door jobs');
+            glassDoorResults.length = 0;
+            return glassDoorResults;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+            glassDoorResults.push({
+                title: results[i].nextJobTitle + ' (GlassDoor Listing)',
+                description: ''
+            });
+        }
+
+        return glassDoorResults;
+    };
+
     ctrl.buildUsaJobsResults = function (results) {
         var usaJobsResults = [];
         if (_.isEmpty(results)) {

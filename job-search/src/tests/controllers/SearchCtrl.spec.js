@@ -6,20 +6,18 @@
         authenticService = {},
         gitHubService = {},
         usaJobsService = {},
+        glassDoorService = {},
         http;
 
     var authenticResponse = { "data": { "listings": { "listing": [{  "title": "title1", "description": "desc1" }] } } };
-    var gitHubResponse = [{ "title": "title2", "description": "desc2" }];
+    var gitHubResponse = { "data": [{ "title": "title2", "description": "desc2" }] };
     var usaJobsResponse = { "data": { "JobData": [{ "JobTitle": "title3", "JobSummary": "desc3" }] } };
+    var glassDoorResponse = { "data": { "response": { "jobTitle": "title4", "results": [{ "nextJobTitle": "title4" }] } } };
 
     beforeEach(function () {
-       
-        angular.mock.module('SearchCtrl');
-        angular.mock.module('authenticService');
-        angular.mock.module('gitHubService');
-        angular.mock.module('usaJobsService');
-
-        inject(function ($rootScope, $http, _$q_, $controller, _authenticService_, _gitHubService_, _usaJobsService_) {
+        angular.mock.module('jobSearchApp');
+        
+        inject(function ($rootScope, $http, _$q_, $controller, _authenticService_, _gitHubService_, _usaJobsService_, _glassDoorJobsService_) {
             rootScope = $rootScope;
             http = $http;
             $q = _$q_;
@@ -27,17 +25,22 @@
             authenticService = _authenticService_;
             gitHubService = _gitHubService_;
             usaJobsService = _usaJobsService_;
+            glassDoorService = _glassDoorJobsService_;
             
             authenticService.getSearchResults = jasmine.createSpy('authenticServiceGetSpy').and.callFake(function () {
                 return 'authentic-results';
             });
 
             gitHubService.getSearchResults = jasmine.createSpy('gitHubServiceGetSpy').and.callFake(function () {
-                return 'gitHub-Results';
+                return 'github-results';
             });
 
             usaJobsService.getSearchResults = jasmine.createSpy('usaJobsServiceGetSpy').and.callFake(function () {
-                return 'usaJobs-Results';
+                return 'usajobs-results';
+            });
+
+            glassDoorService.getSearchResults = jasmine.createSpy('glassDoorServiceGetSpy').and.callFake(function () {
+                return 'glassdoor-results';
             });
 
             ctrl = $controller('SearchCtrl', {
@@ -46,7 +49,8 @@
                 $q: $q,
                 authenticService: authenticService,
                 gitHubService: gitHubService,
-                usaJobsService: usaJobsService
+                usaJobsService: usaJobsService,
+                glassDoorJobsService: glassDoorService
             });
         });
     });
@@ -76,31 +80,35 @@
         it('should call usaJobsService.getSearchResults', function () {
             expect(usaJobsService.getSearchResults).toHaveBeenCalledWith('findJobs');
         });
+
+        it('should call glassDoorJobsService.getSearchResults', function () {
+            expect(glassDoorService.getSearchResults).toHaveBeenCalledWith('findJobs');
+        });
     });
 
-    //describe('ctrl.combineResults()', function () {
+    describe('ctrl.combineResults()', function () {
         
-    //    it('should combine all search results', function () {
-    //        var authenticData = authenticResponse.data.listings.listing;
-    //        var gitHubData = gitHubResponse;
-    //        var usaJobsData = usaJobsResponse.data.JobData;
-    //        var allResults = ctrl.combineResults(authenticData, gitHubData, usaJobsData);
+        it('should combine all search results', function () {
+         
+            var allResults = ctrl.combineResults([authenticResponse, gitHubResponse, usaJobsResponse, glassDoorResponse]);
             
-    //        expect(allResults.length).toBe(3);
-    //        expect(allResults[0].title).toBe('title1 (AuthenticJobs Listing)');
-    //        expect(allResults[1].title).toBe('title2 (GitHub Listing)');
-    //        expect(allResults[2].title).toBe('title3 (USAJobs Listing)');
+            expect(allResults.length).toBe(4);
+            expect(allResults[0].title).toBe('title1 (AuthenticJobs Listing)');
+            expect(allResults[1].title).toBe('title2 (GitHub Listing)');
+            expect(allResults[2].title).toBe('title3 (USAJobs Listing)');
+            expect(allResults[3].title).toBe('title4 (GlassDoor Listing)');
 
-    //        expect(allResults[0].description).toBe('desc1');
-    //        expect(allResults[1].description).toBe('desc2');
-    //        expect(allResults[2].description).toBe('desc3');
-    //    });
-    //});
+            expect(allResults[0].description).toBe('desc1');
+            expect(allResults[1].description).toBe('desc2');
+            expect(allResults[2].description).toBe('desc3');
+            expect(allResults[3].description).toBe('');
+        });
+    });
 
     describe('$scope.loadSuccess()', function () {
         var allResults;
         beforeEach(function () {
-            allResults = [authenticResponse, gitHubResponse, usaJobsResponse];
+            allResults = [authenticResponse, gitHubResponse, usaJobsResponse, glassDoorResponse];
             spyOn(ctrl, 'combineResults').and.returnValue('combinedResults');
         });
 
