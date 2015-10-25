@@ -15,8 +15,14 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
     };
 
     self.setApiKey = function () {
+        
         if (self.reader.readyState == 4) {
-            self.apiKey = self.reader.responseXML.getElementsByTagName("key")[0].childNodes[0].nodeValue;
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(self.reader.responseText, "text/xml");
+
+            var childNodes = xmlDoc.documentElement.childNodes;
+            var keyNode = _.findWhere(childNodes, { tagName: "key" });
+            self.apiKey = keyNode.textContent;
         }
     };
     
@@ -33,7 +39,6 @@ angular.module('authenticService', []).factory('authenticService', ['$http', fun
         //$http.defaults.useXDomain = true;
         var searchParameter = self.buildSearchParameter(searchText);
         var url = self.buildAuthenticJobsUrl(searchParameter);
-
         return $http.jsonp(url);
     };
 
