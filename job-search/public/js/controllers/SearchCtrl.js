@@ -2,7 +2,6 @@
 angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$q', 'authenticService', 'gitHubService',
     'usaJobsService', 'glassDoorJobsService', function ($scope, $http, $q, authenticService, gitHubService, usaJobsService, glassDoorJobsService) {
     var ctrl = this;
-
     $scope.searchText = null;
     $scope.searchError = false;
 
@@ -44,6 +43,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         }
 
         for (var j = 0; j < results.length; j++) {
+            //TODO: make listing text a directive
             gitHubResults.push({
                 title: results[j].title + ' (GitHub Listing)',
                 description: results[j].description
@@ -115,5 +115,12 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     ctrl.loadFailure = function () {
         $scope.allListings = null;
         $scope.searchError = true;
+    };
+   
+    $scope.toggleFavorite = function (index, job) {
+
+        $http.post('/add', { title: job.title, description: job.description }).success(function() {
+            
+        });
     };
 }]);

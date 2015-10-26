@@ -1,5 +1,10 @@
 ﻿<!-- public/views/home.html-->
-<h1>Home Page</h1>
+<h1>Favorite Jobs</h1>
 <div>
-    <p>{{ tagline }}</p>
+    <ul>
+        <li ng-repeat="job in jobs">
+            {{ job.title }}
+        </li>
+
+    </ul>
 </div>
