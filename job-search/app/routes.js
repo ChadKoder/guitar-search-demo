@@ -1,31 +1,39 @@
-﻿// grab the nerd model we just created
-var path = require('path');
-var Nerd = require(path.resolve('app/models/nerd'));
+﻿var path = require('path');
+var mongoose = require('mongoose');
 
 module.exports = function (app) {
+    
+    mongoose.connect('mongodb://localhost/myJobsDB');
+    var models = require(path.resolve('app/models'))(mongoose);
+    
+    app.get('/jobs', function (req, res) {
+        models.Job.find(function (err, jobs) {
+            if (err) {
+                console.log('could not find jobs');
+                return;
 
-    // server routes ===========================================================
-    // handle things like api calls
-    // authentication routes
+            }
+            console.log('found jobs');
+            res.send(jobs);
+        });
+    });
 
-    // sample api route
-    //app.get(path.resolve('/api/nerds'), function (req, res) {
-    //    // use mongoose to get all nerds in the database
-    //    Nerd.find(function (err, nerds) {
+    app.post('/add', function (req, res) {
+        var title = req.body.title;
+        var desc = req.body.description;
+        var job = new models.Job({ title: title, description: desc });
 
-    //        // if there is an error retrieving, send the error. 
-    //        // nothing after res.send(err) will execute
-    //        if (err)
-    //            res.send(err);
+        job.save(function (err) {
+            if (err) {
+                console.log('error. job was not saved.');
+                return;
+            }
 
-    //        res.json(nerds); // return all nerds in JSON format
-    //    });
-    //});
-
-    // route to handle creating goes here (app.post)
-    // route to handle delete goes here (app.delete)
-
-    // frontend routes =========================================================
+            console.log('job saved successfully');
+            res.send();
+        });
+    });
+   
     // route to handle all angular requests
     app.get('*', function (req, res) {
         var path = require('path');

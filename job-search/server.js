@@ -13,54 +13,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-// config files
-//var db = require('../config/db');
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myJobsDB');
-
-var Job = mongoose.model('Job', { title: String, description: String });//, url: String, companyName: String });
-//var job = new Job({ title: 'job1' });
-
-app.get('/jobs', function(req, res) {
-    Job.find(function (err, jobs) {
-       if (err) {
-           console.log('could not find jobs');
-           return;
-
-       }
-        console.log('found jobs');
-        res.send(jobs);
-    });
-});
-
-app.post('/add', function(req, res) {
-    var title = req.body.title;
-    var desc = req.body.description;
-
-    var job = new Job({ title: title, description: desc });
-    job.save(function (err) {
-        if (err) {
-            console.log('error. job was not saved.');
-            return;
-        }
-
-        console.log('job saved successfully');
-        res.send();
-     });
-});
-
-
-//col.remove({}, function () {
-//    console.log('dlete called');
-//});
-//col.save({ title: 'title1' }, function (err, test) {
-//    console.log('save called');
-//});
-
-
-//var db = require(path.resolve('config/db'));
-
 
 // set our port
 var port = process.env.PORT || 8100;
