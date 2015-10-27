@@ -33,6 +33,32 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         return results;
     };
 
+
+    ctrl.parseXml = function(xmlStr) {
+        var parseXml;
+
+        if (window.DOMParser) {
+            parseXml = function (xmlStr) {
+                return (new window.DOMParser()).parseFromString(xmlStr, "text/xml");
+            };
+        } else if (typeof window.ActiveXObject != "undefined" && new window.ActiveXObject("Microsoft.XMLDOM")) {
+            parseXml = function (xmlStr) {
+                var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async = "false";
+                xmlDoc.loadXML(xmlStr);
+                return xmlDoc;
+            };
+        } else {
+            parseXml = function () { return null; }
+        }
+    };
+
+    //ctrl.removeXml = function (xmlString) {
+    //    var removeXml = xmlString.replace(/(<([^>]+)>)/ig, "");
+    //    //var removeOtherChars = removeXml.replace('')
+    //    return result;
+    //};
+
     ctrl.buildGitHubResults = function (results) {
         var gitHubResults = [];
 
@@ -46,7 +72,9 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
             //TODO: make listing text a directive
             gitHubResults.push({
                 title: results[j].title + ' (GitHub Listing)',
-                description: results[j].description
+                description: results[j].description,
+                url: 'GitHub URL',
+                companyName: 'GitHub Company Name'
             });
         }
         
@@ -64,7 +92,9 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         for (var i = 0; i < results.length; i++) {
             glassDoorResults.push({
                 title: results[i].nextJobTitle + ' (GlassDoor Listing)',
-                description: ''
+                description: '',
+                url: 'glassdoor URL',
+                companyName: 'glassdoor Company Name'
             });
         }
 
@@ -82,7 +112,9 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         for (var i = 0; i < results.length; i++) {
             usaJobsResults.push({
                 title: results[i].JobTitle + ' (USAJobs Listing)',
-                description: results[i].JobSummary
+                description: results[i].JobSummary,
+                url: 'usaJbos URL',
+                companyName: 'usaJobs Company Name'
             });
         }
 
@@ -98,9 +130,13 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         }
         
         for (var i = 0; i < results.length; i++) {
+
+
             authResults.push({
                 title: results[i].title + ' (AuthenticJobs Listing)',
-                description: results[i].description
+                description: results[i].description,
+                url: results[i].apply_url,
+                companyName: results[i].company.name//results[i].url
             });
         }
 
@@ -119,7 +155,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
    
     $scope.toggleFavorite = function (index, job) {
 
-        $http.post('/add', { title: job.title, description: job.description }).success(function() {
+        $http.post('/add', { title: job.title, description: job.description, url: job.url, companyName: job.companyName }).success(function() {
             
         });
     };

@@ -17,11 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // set our port
 var port = process.env.PORT || 8100;
 
-// connect to our mongoDB database 
-// (uncomment after you enter in your own credentials in config/db.js)
-// mongoose.connect(db.url); 
-
-
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 

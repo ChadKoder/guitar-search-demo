@@ -21,7 +21,10 @@ module.exports = function (app) {
     app.post('/add', function (req, res) {
         var title = req.body.title;
         var desc = req.body.description;
-        var job = new models.Job({ title: title, description: desc });
+        var url = req.body.url;
+        var companyName = req.body.companyName;
+
+        var job = new models.Job({ title: title, description: desc, url: url, companyName: companyName });
 
         job.save(function (err) {
             if (err) {

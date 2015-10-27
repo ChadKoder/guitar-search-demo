@@ -9,7 +9,7 @@
         glassDoorService = {},
         http;
 
-    var authenticResponse = { "data": { "listings": { "listing": [{  "title": "title1", "description": "desc1" }] } } };
+    var authenticResponse = { "data": { "listings": { "listing": [{ "title": "title1", "description": "desc1", "apply_url": "apply_url", "company": { "name": "company1" } }] } } };
     var gitHubResponse = { "data": [{ "title": "title2", "description": "desc2" }] };
     var usaJobsResponse = { "data": { "JobData": [{ "JobTitle": "title3", "JobSummary": "desc3" }] } };
     var glassDoorResponse = { "data": { "response": { "jobTitle": "title4", "results": [{ "nextJobTitle": "title4" }] } } };
@@ -102,6 +102,8 @@
             expect(allResults[1].description).toBe('desc2');
             expect(allResults[2].description).toBe('desc3');
             expect(allResults[3].description).toBe('');
+
+            expect(allResults[0].url).toBe('apply_url');
         });
     });
 

@@ -5,8 +5,9 @@
     "bootstrap": "latest",
     "angular": "latest",
     "angular-route": "latest",
-	"angular-resource": "latest",
-	"underscore": "latest"
+    "angular-resource": "latest",
+    "underscore": "latest",	
+    "angular-bootstrap": "~0.14.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.7"

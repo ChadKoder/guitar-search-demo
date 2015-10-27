@@ -1,10 +1,27 @@
 ﻿<!-- public/views/home.html-->
 <h1>Favorite Jobs</h1>
 <div>
-    <ul>
-        <li ng-repeat="job in jobs">
-            {{ job.title }}
-        </li>
-
-    </ul>
+    
+<div accordion ng-repeat="job in jobs">
+    <div accordion-group class="accord" heading="{{ job.title }}">
+        <div class="col-sm-6 col-md-4">Company:  {{ job.companyName }} </div>
+        <div>description: {{ job.description }}</div>
+        <!--<div class="form-horizontal">Company: <h4> {{ job.companyName }}</h4></div>-->
+        <a ng-href='{{job.url}}'>Apply here</a>
+    </div>
 </div>
+
+
+<!--<div accordion ng-repeat="(phylum, phylum_examples) in animals">
+        <div accordion-group class="accord" heading="{{phylum}}">
+            <div accordion ng-repeat="(class, class_examples) in phylum_examples">
+                <div accordion-group class="accord" heading="{{class}}">
+                    <div accordion ng-repeat="animal in class_examples">
+                        <div accordion-group class="accord" heading="{{animal}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
