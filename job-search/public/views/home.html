@@ -5,7 +5,8 @@
 <div accordion ng-repeat="job in jobs">
     <div accordion-group class="accord" heading="{{ job.title }}">
         <div class="col-sm-6 col-md-4">Company:  {{ job.companyName }} </div>
-        <div>description: {{ job.description }}</div>
+        <div ng-bind-html="job.description">description: </div>
+        <!--<div ng-bind-html="job.description">description: </div>-->
         <!--<div class="form-horizontal">Company: <h4> {{ job.companyName }}</h4></div>-->
         <a ng-href='{{job.url}}'>Apply here</a>
     </div>
