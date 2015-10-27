@@ -1,10 +1,11 @@
 ﻿//public/js/controllers/SearchCtrl
 angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$q', 'authenticService', 'gitHubService',
-    'usaJobsService', 'glassDoorJobsService', function ($scope, $http, $q, authenticService, gitHubService, usaJobsService, glassDoorJobsService) {
+    'usaJobsService', 'glassDoorJobsService', '$sce', function ($scope, $http, $q, authenticService, gitHubService, usaJobsService, glassDoorJobsService, $sce) {
     var ctrl = this;
     $scope.searchText = null;
     $scope.searchError = false;
-
+    $scope.savedJobs = {};
+    
     $scope.search = function () {
         $q.all([authenticService.getSearchResults($scope.searchText),
                 gitHubService.getSearchResults($scope.searchText),
@@ -18,7 +19,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         var gitHubData = data[1].data;
         var usaJobsData = data[2].data.JobData;
         var glassDoorJobsData = data[3].data.response.results;
-     
+        
         var authenticResults = ctrl.buildAuthenticResults(authenticData);
         var gitHubResults = ctrl.buildGitHubResults(gitHubData);
         var usaJobsResults = ctrl.buildUsaJobsResults(usaJobsData);
@@ -45,10 +46,12 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         for (var j = 0; j < results.length; j++) {
             //TODO: make listing text a directive
             gitHubResults.push({
-                title: results[j].title + ' (GitHub Listing)',
+                title: results[j].title,
                 description: results[j].description,
                 url: 'GitHub URL',
-                companyName: 'GitHub Company Name'
+                companyName: 'GitHub Company Name',
+                siteListing: '(GitHub Listing)',
+                isFavorite: false
             });
         }
         
@@ -65,10 +68,12 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
 
         for (var i = 0; i < results.length; i++) {
             glassDoorResults.push({
-                title: results[i].nextJobTitle + ' (GlassDoor Listing)',
+                title: results[i].nextJobTitle,
                 description: '',
                 url: 'glassdoor URL',
-                companyName: 'glassdoor Company Name'
+                companyName: 'glassdoor Company Name',
+                siteListing: '(GlassDoor Listing)',
+                isFavorite: false
             });
         }
 
@@ -85,10 +90,12 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
 
         for (var i = 0; i < results.length; i++) {
             usaJobsResults.push({
-                title: results[i].JobTitle + ' (USAJobs Listing)',
+                title: results[i].JobTitle,
                 description: results[i].JobSummary,
                 url: 'usaJbos URL',
-                companyName: 'usaJobs Company Name'
+                companyName: 'usaJobs Company Name',
+                siteListing: '(USAJobs Listing)',
+                isFavorite: false
             });
         }
 
@@ -96,6 +103,8 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     };
     
     ctrl.buildAuthenticResults = function (results) {
+
+
         var authResults = [];
         if (_.isEmpty(results)) {
             console.log('no search results found from authentic jobs');
@@ -104,19 +113,33 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         }
         
         for (var i = 0; i < results.length; i++) {
-
-
+            var isFavorite = ctrl.getFavoriteFlag(results[i]);
             authResults.push({
-                title: results[i].title + ' (AuthenticJobs Listing)',
+                title: results[i].title,
                 description: results[i].description,
                 url: results[i].apply_url,
-                companyName: results[i].company.name//results[i].url
+                companyName: results[i].company.name,//results[i].url,
+                siteListing: '(AuthenticJobs Listing)',
+                isFavorite: isFavorite
             });
         }
 
         return authResults;
     };
-    
+
+    ctrl.getFavoriteFlag = function(job) {
+        var isFavorite = false;
+        var currentListing = _.find($scope.savedJobs, function (favJob) {
+            return favJob.title == results[i].title;
+        });
+
+        if (currentListing) {
+            isFavorite = true;
+        }
+
+        return isFavorite;
+    };
+
     ctrl.loadSuccess = function (results) {
         var allResults = ctrl.combineResults(results);
         $scope.allListings = allResults;
@@ -126,11 +149,35 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
         $scope.allListings = null;
         $scope.searchError = true;
     };
-   
-    $scope.toggleFavorite = function (index, job) {
+        
+    ctrl.retrieveSavedJobs = function () {
+        $http.get('/jobs').success(function (jobs) {
+            $scope.savedJobs = jobs;
+        });
+    };
 
-        $http.post('/add', { title: job.title, description: job.description, url: job.url, companyName: job.companyName }).success(function() {
+    ctrl.removeFavoriteJob = function (job) {
+        $http.put('/update', { title:job.title }).success(function () {
+            console.log('job successfully removed');
+        });
+    };
+
+    ctrl.addFavoriteJob = function(job) {
+        $http.post('/add', { title: job.title, description: job.description, url: job.url, companyName: job.companyName }).success(function () {
             
         });
     };
+
+    $scope.toggleFavorite = function (index, job) {
+        if (job.isFavorite) {
+            ctrl.removeFavoriteJob(job);
+            job.isFavorite = false;
+        } else {
+            ctrl.addFavoriteJob(job);
+            job.isFavorite = true;
+        }
+    };
+
+    ctrl.retrieveSavedJobs();
+
 }]);

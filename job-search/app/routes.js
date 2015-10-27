@@ -18,6 +18,20 @@ module.exports = function (app) {
         });
     });
 
+    app.put('/update', function (req, res) {
+        /*todo: need to remove by ids*/
+        var title = req.body.title;
+
+        models.Job.remove({ title: title }, function (err) {
+            if (err) {
+                console.log('Failed to delete job: ' + title);
+            }
+            console.log('Deleted saved job successfully.');
+        });
+
+        res.send();
+    });
+
     app.post('/add', function (req, res) {
         var title = req.body.title;
         var desc = req.body.description;
@@ -28,7 +42,7 @@ module.exports = function (app) {
 
         job.save(function (err) {
             if (err) {
-                console.log('error. job was not saved.');
+                console.log('Failed to save job.');
                 return;
             }
 
@@ -41,7 +55,7 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         var path = require('path');
 
-        res.sendfile(path.resolve('public/index.html')); // load our public/index.html file
+        res.sendfile(path.resolve('public/index.html'));
     });
 
 };
