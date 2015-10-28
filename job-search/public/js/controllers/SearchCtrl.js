@@ -130,7 +130,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', '$
     ctrl.getFavoriteFlag = function(job) {
         var isFavorite = false;
         var currentListing = _.find($scope.savedJobs, function (favJob) {
-            return favJob.title == results[i].title;
+            return favJob.title == job.title;
         });
 
         if (currentListing) {

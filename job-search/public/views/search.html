@@ -3,7 +3,7 @@
 
 <div>powered by: 
     <a href='http://www.glassdoor.com/index.htm'>
-        <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Glass Door Job Search' />
+        <img src='../img/glassdoor.png' title='Glass Door Job Search' />
     </a>
     <a href='http://www.authenticjobs.com'>
         <img src='../img/authenticJobs.png' title='AuthenticJobs search' />
@@ -29,12 +29,11 @@
         <div class="row-fluid">
             <li>{{ job.title }} -- {{ job.siteListing }}
                 <div class="btn-group" data-toggle="buttons-checkbox">
-                    <ul ng-init="selectedTab = 'users'">
+                    <ul>
                         <button type="button" ng-class="{'btn-primary': job.isFavorite}" ng-click="toggleFavorite($index, job)">favorite</></button>
                     </ul>
                 </div>
             </li>
         </div>
-        
     </div>
 </div>

@@ -1,15 +1,26 @@
 ﻿<!-- public/views/home.html-->
 <h1>Favorite Jobs</h1>
+
+
+<form class="form-horizontal">
+    <!--<div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        </div>
+    </div>-->
+</form>
+
+
 <div>
-    <div accordion ng-repeat="job in jobs">
-        <div accordion-group class="accord" heading="{{ job.title }}">
+    <div class="form-inline" uib-accordion ng-repeat="job in jobs">
+        <div class="" uib-accordion-group class="accord" heading="{{ job.title }}">
             <div>
                 <div>Company:  {{ job.companyName }} </div>
                 <div ng-bind-html="job.description"></div>
-                <!--<div ng-bind-html="job.description">description: </div>-->
-                <!--<div class="form-horizontal">Company: <h4> {{ job.companyName }}</h4></div>-->
                 <a ng-href='{{job.url}}'>Apply here</a>
             </div>
         </div>
+        <button type="button" ng-click="delete($index, job)">delete</></button>
     </div>
 </div>
