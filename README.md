@@ -1,5 +1,6 @@
 # job-search
-This application will allow you to search for jobs across multiple sites.  Three job site api's are now being utilized, but will be adding more sites and functionality soon...
+This application focuses on searching for remote jobs across multiple listings, with the ability to maintain a list of favorites.
+
 
 Current participating sites:
 - AuthenticJobs.com
