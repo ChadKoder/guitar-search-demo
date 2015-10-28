@@ -1,5 +1,5 @@
 ﻿//js/controllers/HomeCtrl.js
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$sce', '$route', function ($scope, $http, $sce, $route) {
     var ctrl = this;
 
     ctrl.retrieveSavedJobs = function() {
@@ -18,8 +18,8 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$sce'
     };
 
     $scope.delete = function (job) {
-        alert(job.title);
         ctrl.removeFavoriteJob(job);
+            $route.reload();
     };
 
     ctrl.removeFavoriteJob = function (job) {
