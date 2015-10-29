@@ -1,7 +1,7 @@
 ﻿//js/controllers/HomeCtrl.js
 angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$sce', '$route', function ($scope, $http, $sce, $route) {
     var ctrl = this;
-
+    $scope.testCall = 'pretestcall';
     ctrl.retrieveSavedJobs = function() {
         $http.get('/jobs').success(function (jobs) {
             var cleanJobs = jobs;
@@ -20,6 +20,19 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$sce'
     $scope.delete = function (job) {
         ctrl.removeFavoriteJob(job);
             $route.reload();
+    };
+
+    $scope.getApiTest = function () {
+        var url = 'http://localhost:8101/api/Jobs?callback=JSON_CALLBACK';
+     
+        $http({
+            method: "JSONP",
+            url: url,
+        }).success(function(data) {
+            $scope.testCall = data;
+        }).error(function(err) {
+            $scope.testCall = 'Call to api failed.';
+        });
     };
 
     ctrl.removeFavoriteJob = function (job) {

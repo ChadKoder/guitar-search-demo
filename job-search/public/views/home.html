@@ -2,54 +2,57 @@
 <h1>Favorite Jobs</h1>
 
 <!--<div class="form-group">
-    <label class="control-label col-sm-offset-2 col-sm-2" for="company">Company</label>
-    <div class="col-sm-6 col-md-4">
-        <select id="company" class="form-control">
-            <option>small</option>
-            <option>medium</option>
-            <option>large</option>
-        </select>
-    </div>
-</div>-->
-
-<uib-accordion ng-repeat="job in jobs">
-    <uib-accordion-group>
-        <uib-accordion-heading>
-            {{ job.title }}
-            <!--<div class="form-group pull-right">
-                <label class="control-label col-sm-offset-2 col-sm-2" for="company">Company</label>
-                <div class="col-sm-6 col-md-4 col-lg-6">
-                    <select id="actions" class="form-control col-lg-4 col-md-2">
-                        <option>Apply</option>
-                        <option>Delete</option>
-                    </select>
-                </div>
-            </div>-->
-            <!--<span ng-click="delete(job); $event.stopPropagation();" class="glyphicon glyphicon-trash pull-right"></span>-->
-            <!--<div class="pull-right btn-group btn-group-xs" uib-dropdown>
-                <button type="button" class="btn btn-success btn-xs" uib-dropdown-toggle ng-click="mdc.clickToAdd();$event.stopPropagation();">Good</button>
-                <button class="btn btn-danger btn-xs" ng-click="mdc.clickToAdd();$event.stopPropagation();">bad</button>
-            </div>-->
-            <div class="pull-right btn-group" uib-dropdown is-open="mdc.status.isopen">
-                &nbsp;
-                <button type="button" ng-click="$event.stopPropagation();" class="btn btn-xs btn-primary  uib-dropdown-toggle" uib-dropdown-toggle>
-                    Actions <span class="caret"></span>
-                </button>
-                <ul class="uib-dropdown-menu .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a" role="menu">
-                    <li>
-                        <a href="{{job.url}}" ng-click="$event.stopPropagation();">Apply</a>
-                    </li>
-                    <li>
-                        <a href="#" ng-click="$event.stopPropagation(); delete(job);">Delete</a>
-                    </li>
-                </ul>
-            </div>
-        </uib-accordion-heading>
-        <div>
-            <div>Company:  {{ job.companyName }} </div>
-            <div ng-bind-html="job.description"></div>
-            <a ng-href='{{job.url}}'>Apply here</a>
+        <label class="control-label col-sm-offset-2 col-sm-2" for="company">Company</label>
+        <div class="col-sm-6 col-md-4">
+            <select id="company" class="form-control">
+                <option>small</option>
+                <option>medium</option>
+                <option>large</option>
+            </select>
         </div>
-    </uib-accordion-group>
-</uib-accordion>
+    </div>-->
+
+<div>TestCall: {{ testCall }}</div>
+    <button type="button" ng-click="getApiTest();">test</button>
+
+    <uib-accordion ng-repeat="job in jobs">
+        <uib-accordion-group>
+            <uib-accordion-heading>
+                {{ job.title }}
+                <!--<div class="form-group pull-right">
+                    <label class="control-label col-sm-offset-2 col-sm-2" for="company">Company</label>
+                    <div class="col-sm-6 col-md-4 col-lg-6">
+                        <select id="actions" class="form-control col-lg-4 col-md-2">
+                            <option>Apply</option>
+                            <option>Delete</option>
+                        </select>
+                    </div>
+                </div>-->
+                <!--<span ng-click="delete(job); $event.stopPropagation();" class="glyphicon glyphicon-trash pull-right"></span>-->
+                <!--<div class="pull-right btn-group btn-group-xs" uib-dropdown>
+                    <button type="button" class="btn btn-success btn-xs" uib-dropdown-toggle ng-click="mdc.clickToAdd();$event.stopPropagation();">Good</button>
+                    <button class="btn btn-danger btn-xs" ng-click="mdc.clickToAdd();$event.stopPropagation();">bad</button>
+                </div>-->
+                <div class="pull-right btn-group" uib-dropdown is-open="mdc.status.isopen">
+                    &nbsp;
+                    <button type="button" ng-click="$event.stopPropagation();" class="btn btn-xs btn-primary  uib-dropdown-toggle" uib-dropdown-toggle>
+                        Actions <span class="caret"></span>
+                    </button>
+                    <ul class="uib-dropdown-menu .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a" role="menu">
+                        <li>
+                            <a href="{{job.url}}" ng-click="$event.stopPropagation();">Apply</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="$event.stopPropagation(); delete(job);">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </uib-accordion-heading>
+            <div>
+                <div>Company:  {{ job.companyName }} </div>
+                <div ng-bind-html="job.description"></div>
+                <a ng-href='{{job.url}}'>Apply here</a>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
 
