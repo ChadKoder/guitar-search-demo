@@ -10,7 +10,8 @@
         FinishTop: String,
         FinishNeck: String,
         FinishBackSides: String,
-        Price: String
+        Price: String,
+        Url: String
     });
 
     var guitar = mongoose.model('Guitar', guitarModel);
