@@ -1,17 +1,21 @@
-<<<<<<< HEAD
-# job-search
-This application focuses on searching for remote jobs across multiple listings, with the ability to maintain a list of favorites.
+# guitar-search-demo
+This is a demo application that I am writing to be used to learn new web technologies. 
 
-=======
-This application focuses on searching for remote jobs across multiple listings, with the ability to maintain a list of favorites.
->>>>>>> save-more-job-data
+Currently using:
+web:
+- node
+- angularJS
+- underscoreJS
+- bootstrap
+- web api service I created to do simple gets/puts to
+- jasmine for unit testing
 
-Current participating sites:
-- AuthenticJobs.com
-- GitHubJobs
-- USAJobs
-<<<<<<< HEAD
-- GlassDoor Jobs
-=======
-- GlassDoor Jobs
->>>>>>> save-more-job-data
+api service: 
+- petapoco 
+- and more...
+
+
+Current plans:
+- implement Angular Materials
+- write e2e tests with Protractor or similar
+- allow get/put of specific items
