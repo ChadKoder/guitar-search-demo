@@ -3,12 +3,17 @@ This is a demo application that I am writing to be used to learn new web technol
 
 Currently using:
 web:
+- grunt
 - node
 - angularJS
 - underscoreJS
 - bootstrap
 - web api service I created to do simple gets/puts to
 - jasmine for unit testing
+
+data persistence:
+- MongoDB 
+- sqlExpress
 
 api service: 
 - petapoco 
