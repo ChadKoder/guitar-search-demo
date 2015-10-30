@@ -1,3 +1,3 @@
 ﻿//js/app.js
-angular.module('guitarSearchApp', ['ngRoute', 'appRoutes', 'ngResource', 'HomeCtrl', 'SearchCtrl',
+angular.module('guitarSearchApp', ['ngRoute', 'appRoutes', 'ngResource', 'ngMaterial', 'HomeCtrl', 'SearchCtrl',
     'guitarService', 'ui.bootstrap']);
