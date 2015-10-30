@@ -1,0 +1,32 @@
+﻿<!-- public/views/home.html-->
+<h1>Favorite Guitars</h1>
+
+<div ng-show="guitars.length === 0"> No results found...</div>
+
+    <uib-accordion ng-repeat="guitar in guitars">
+        <uib-accordion-group>
+            <uib-accordion-heading>
+                {{ guitar.Model }}
+                <div class="pull-right btn-group" uib-dropdown is-open="mdc.status.isopen">
+                    &nbsp;
+                    <button type="button" ng-click="$event.stopPropagation();" class="btn btn-xs btn-primary  uib-dropdown-toggle" uib-dropdown-toggle>
+                        Actions <span class="caret"></span>
+                    </button>
+                    <ul class="uib-dropdown-menu .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a" role="menu">
+                        <li>
+                            <a href="{{guitar.url}}" ng-click="$event.stopPropagation();">Buy</a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="$event.stopPropagation(); delete(guitar);">Delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </uib-accordion-heading>
+            <div>
+                <div>Company:  {{ guitar.companyName }} </div>
+                <div ng-bind-html="guitar.description"></div>
+                <a ng-href='{{guitar.url}}'>Apply here</a>
+            </div>
+        </uib-accordion-group>
+    </uib-accordion>
+

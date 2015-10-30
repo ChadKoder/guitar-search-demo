@@ -1,0 +1,24 @@
+﻿<!-- public/views/search.html -->
+<div ng-show="searchError">Search could not complete due to an error.</div>
+
+<div class="input-group">
+    <input id="address" ng-model="searchText" placeholder="Search for a guitar" class="form-control"> 
+    <span class="input-group-btn">
+         <button class="btn btn btn-primary" type="button" ng-click="search()">Search</button>
+    </span> 
+</div>
+<div ng-show="allGuitars.length === 0"> No results found...</div>
+<div ng-show="allGuitars.length > 0">
+    <div>total listings: {{ allGuitars.length }}</div>
+    <div ng-repeat="guitar in allGuitars">
+        <div class="row-fluid">
+            <li>{{ guitar.Company }} -- {{ guitar.Model }}
+                <div class="btn-group" data-toggle="buttons-checkbox">
+                    <ul>
+                        <button type="button" ng-class="{'btn-primary': guitar.isFavorite}" ng-click="toggleFavorite($index, guitar)">favorite</></button>
+                    </ul>
+                </div>
+            </li>
+        </div>
+    </div>
+</div>
