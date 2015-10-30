@@ -8,26 +8,28 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 'g
 
     ctrl.searchSuccess = function (result) {
         $scope.allGuitars = result;
-        //ctrl.setFavoriteFlag = result($scope.allGuitars);
-        
-        _.each($scope.allGuitars, function(gtr) {
-            gtr.isFavorite = ctrl.getFavoriteFlag(gtr);
+        ctrl.flagFavorites();
+    };
+
+    ctrl.flagFavorites = function() {
+        _.each($scope.allGuitars, function (gtr) {
+            gtr.isFavorite = getFavoriteFlag(gtr);
         });
     };
-     
 
     ctrl.searchFailure = function() {
-        alert('search failed');
+        $scope.searchError = true;
+        $scope.allGuitars = null;
     };
 
     $scope.search = function () {
-        guitarService.getAllGuitars().then(ctrl.searchSuccess, ctrl.searchFailure);
+        ctrl.getFavorites();
+        guitarService.getAll().then(ctrl.searchSuccess, ctrl.searchFailure);
     };
     
-    ctrl.getFavoriteFlag = function(guitar) {
+    var getFavoriteFlag = function(guitar) {
         var currentListing = _.find($scope.favoriteGuitars, function (favGuitar) {
-            //TODO: Matching on title now to get things working, but needs to match on something better I'd say...
-            return favGuitar.title == guitar.title;
+            return favGuitar.Company == guitar.Company && favGuitar.Model == guitar.Model;
         });
 
         if (currentListing) {
@@ -36,18 +38,8 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 'g
 
         return false;
     };
-
-    ctrl.loadSuccess = function (results) {
-        var allResults = ctrl.combineResults(results);
-        $scope.allListings = allResults;
-    };
-
-    ctrl.loadFailure = function () {
-        $scope.allListings = null;
-        $scope.searchError = true;
-    };
-        
-    ctrl.retrieveFavorites = function () {
+    
+    ctrl.getFavorites = function () {
         $http.get('/guitars').success(function (guitars) {
             $scope.favoriteGuitars = guitars;
         });
@@ -72,7 +64,4 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', ['$scope', '$http', 'g
             guitar.isFavorite = true;
         }
     };
-
-    //ctrl.retrieveSavedGuitars();
-
 }]);

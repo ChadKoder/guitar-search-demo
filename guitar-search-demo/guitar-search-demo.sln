@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "guitar-search", "http://localhost:63072", "{92C0C9B7-46C6-4BB5-8B50-8C965CFEC188}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "guitar-search-demo", "http://localhost:55409", "{094451AA-5E39-4770-9D97-FA8B2E167FE8}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_63072"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-guitar-search\guitar-search\guitar-search\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63072\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55409"
+		Debug.AspNetCompiler.PhysicalPath = "..\guitar-search-demo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55409\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_63072"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-guitar-search\guitar-search\guitar-search\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63072\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55409"
+		Release.AspNetCompiler.PhysicalPath = "..\guitar-search-demo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55409\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\..\..\..\GitRepositories\personalProjects\spa-guitar-search\guitar-search\guitar-search\"
+		SlnRelativePath = "..\guitar-search-demo\"
 	EndProjectSection
 EndProject
 Global
@@ -29,8 +29,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{92C0C9B7-46C6-4BB5-8B50-8C965CFEC188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92C0C9B7-46C6-4BB5-8B50-8C965CFEC188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094451AA-5E39-4770-9D97-FA8B2E167FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094451AA-5E39-4770-9D97-FA8B2E167FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

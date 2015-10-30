@@ -4,7 +4,7 @@ angular.module('guitarService', []).factory('guitarService', ['$http', function 
     var self = {};
     var baseUrl = 'http://localhost:8103/api/guitar?callback=JSON_CALLBACK';
    
-    self.getAllGuitars = function() {
+    self.getAll = function() {
         return $http({
             method: "JSONP",
             url: baseUrl,
@@ -12,18 +12,6 @@ angular.module('guitarService', []).factory('guitarService', ['$http', function 
             return response.data;
         });
     };
-
-    //$scope.getApiTest = function () {
-        
-        //$http({
-        //    method: "JSONP",
-        //    url: url,
-        //}).success(function (data) {
-        //    $scope.testCall = data.ProductDescription;
-        //}).error(function (err) {
-        //    $scope.testCall = 'Call to api failed.';
-        //});
-    //};
 
     return self;
 

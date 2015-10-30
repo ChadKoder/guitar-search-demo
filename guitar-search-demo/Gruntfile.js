@@ -66,7 +66,8 @@ module.exports = function(grunt) {
 				'public/libs/underscore/underscore.js',
 				'public/js/**/*.js',
 				'src/tests/**/*.js',
-				'config/*.js' //'app/*.js'
+				'config/*.js' ,
+				'public/libs/angular-bootstrap/ui-bootstrap.js'
 				],
 				plugins: [
 				'karma-phantomjs-launcher',

@@ -20,15 +20,16 @@ module.exports = function (app) {
 
     app.put('/update', function (req, res) {
         /*todo: need to remove by ids*/
-        var title = req.body.title;
+        var deleteMe = req.body;
 
-        models.Guitar.remove({ title: title }, function (err) {
+        models.Guitar.remove(deleteMe, function(err) {
             if (err) {
-                console.log('Failed to delete guitar: ' + title);
+                console.log('Failed to delete guitar: ' + JSON.stringify(deleteMe));
             }
-            console.log('Deleted saved guitar successfully.');
-        });
 
+            console.log('deleted guitar successfully: ' + JSON.stringify(deleteMe));
+        });
+        
         res.send();
     });
 
