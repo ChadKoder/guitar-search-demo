@@ -1,4 +1,101 @@
-﻿body { padding-top:30px; }
+.parent {
+    display: block;
+}
+.glyphicon.glyphicon-remove-circle {
+    font-size: 150%;
+}
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+/*.showcode{
+  background: rgb(232, 216, 49);
+  color: rgba(124, 98, 152, 1);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  position: absolute;
+  right: 1em;
+  bottom: 0;
+  margin-bottom: -15px;
+  border-radius: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+  transition: all .3s;
+}
+.viewCode .showcode{
+  transform: rotateX(-180deg);
+  box-shadow: 0px -2px 5px 0 rgba(0, 0, 0, 0.26);      
+}*/ 
 
+md-content {
+  background-color: #ECEFF1!important;
+  padding: 30px;
+}
+.selected-item ~ .item .user,
+.item:first-child .user {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.selected-item ~ .item .user.selected,
+.item:first-child .user.selected {
+  margin-top: 0;
+}
+.item:last-child .user {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.item .tile .folded {
+  cursor: pointer;
+}
+.item .user {
+  background-color: white;
+  transition: all 500ms;
+}
+.item .user h3,
+.item .user p {
+  transition: all 500ms;
+}
+.item .user p {
+  opacity: 1;
+  height: inherit;
+}
+.item .user p.ng-hide {
+  opacity: 0;
+  height: 0;
+}
+.item .user.selected {
+  margin: 30px -15px;
+  border-radius: 2px;
+}
+.item .user.selected .expanded {
+  visibility: visible;
+}
+.item .user.selected .expanded,
+.item .user.selected .expanded > * {
+  max-height: 700px;
+  opacity: 1;
+}
+.item .user.selected .expanded .md-label {
+  border: hidden;
+}
+.item .user.selected h3 {
+  font-size: 1.8em;
+}
+.item .user .expanded {
+  visibility: hidden;
+}
+.item .user .expanded,
+.item .user .expanded > * {
+  max-height: 0;
+  opacity: 0;
+  transition: all 500ms;
+}
+.item .user .expanded .split {
+  padding: 10px;
+}
+.item .user .face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  height: 48px;
+  margin: 16px;
+}

@@ -8,9 +8,15 @@
     "angular-resource": "latest",
     "underscore": "latest",
     "angular-bootstrap": "latest",
-    "angular-material": "latest"
+    "angular-material": "latest",
+    "less": "~2.5.3"
   },
   "devDependencies": {
-    "angular-mocks": "latest"
+    "angular-mocks": "latest",
+    "material-design-icons": "~2.0.0"
+  },
+  "resolutions": {
+    "angular": "1.4.7",
+    "angular-material": "master"
   }
 }

@@ -10,13 +10,14 @@ module.exports = function(grunt) {
           src: ['public/libs/angular/*.js',
               'public/libs/angular-route/*.js',
               'public/libs/angular-resource/*.js',
+			  'public/libs/angular-animate/*.js',
               'public/libs/jquery/*.js',
               'public/libs/underscore/*.js',
               'public/libs/bootstrap/*.js',
               'public/libs/angular-bootstrap/*.js',
               'public/js/**/*.js',
               'config/*.js'
-		],// 'app/*.js'],			 
+		],	 
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -29,7 +30,21 @@ module.exports = function(grunt) {
         files: {
           'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
-      }
+      },
+      less: {
+          // production config is also available
+          development: {
+              options: {
+                  // Specifies directories to scan for @import directives when parsing. 
+                  // Default value is the directory of the source, which is probably what you want.
+                  paths: ["public/css/"],
+              },
+              files: {
+                  // compilation.css  :  source.less
+                  "public/css/style.css": "public/css/styles.css"
+              }
+          },
+      },
     },
     //qunit: {
 //      files: ['public/**/*.html']
