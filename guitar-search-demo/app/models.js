@@ -2,6 +2,7 @@
 {
     var schema = mongoose.Schema;
     var guitarModel = new schema({
+        _id: String,
         Company: String,
         Model: String,
         Description: String,
@@ -11,7 +12,8 @@
         FinishNeck: String,
         FinishBackSides: String,
         Price: String,
-        Url: String
+        Url: String,
+        ImgUrl: String
     });
 
     var guitar = mongoose.model('Guitar', guitarModel);

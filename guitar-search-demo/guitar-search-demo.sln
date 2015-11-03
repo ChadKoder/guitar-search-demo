@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "guitar-search-demo", "http://localhost:55409", "{094451AA-5E39-4770-9D97-FA8B2E167FE8}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "guitar-search-demo", "http://localhost:55409", "{0BB4D2A2-9315-477A-AE01-BE1F2519BCEC}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -29,8 +29,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{094451AA-5E39-4770-9D97-FA8B2E167FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{094451AA-5E39-4770-9D97-FA8B2E167FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB4D2A2-9315-477A-AE01-BE1F2519BCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB4D2A2-9315-477A-AE01-BE1F2519BCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

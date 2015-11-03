@@ -1,32 +1,45 @@
 ﻿<!-- public/views/home.html-->
-<h1>Favorite Guitars</h1>
+<h1 class="h1">Favorite Guitars</h1>
 
-<div ng-show="guitars.length === 0"> No results found...</div>
+<i class="material-icons">face</i>
 
-    <uib-accordion ng-repeat="guitar in guitars">
-        <uib-accordion-group>
-            <uib-accordion-heading>
-                {{ guitar.Model }}
-                <div class="pull-right btn-group" uib-dropdown is-open="mdc.status.isopen">
-                    &nbsp;
-                    <button type="button" ng-click="$event.stopPropagation();" class="btn btn-xs btn-primary  uib-dropdown-toggle" uib-dropdown-toggle>
-                        Actions <span class="caret"></span>
-                    </button>
-                    <ul class="uib-dropdown-menu .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a" role="menu">
-                        <li>
-                            <a href="{{guitar.url}}" ng-click="$event.stopPropagation();">Buy</a>
-                        </li>
-                        <li>
-                            <a href="#" ng-click="$event.stopPropagation(); delete(guitar);">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-            </uib-accordion-heading>
-            <div>
-                <div>Make:  {{ guitar.Company }} </div>
-                <div ng-bind-html="guitar.description"></div>
-                <a ng-href='{{guitar.Url}}'>Click here for more details</a>
-            </div>
-        </uib-accordion-group>
-    </uib-accordion>
+<md-icon md-font-library="material-icons" class="md-light md-48">face</md-icon> 
 
+<div ng-show="guitars.length === 0 ">No favorites found...</div>
+<div id="md-table-template" ng-hide="guitars.length === 0">
+    <md-content layout="row" flex layout-align="center center" layout-fill>
+        <div flex="100" class="content" ui-view>
+            <md-item ng-repeat="guitar in guitars" class="item md-table-content-row"
+                     ng-class="{ 'selected-item': $index == selectedUserIndex}">
+                <md-item-content class="user tile"
+                                 ng-class="{'selected md-whiteframe-z2': $index == selectedUserIndex}"
+                                 layout="column">
+                    <div layout="row" layout-padding ng-click="selectUserIndex($index)" class="folded">
+                        <img ng-src="{{guitar.ImgUrl}}" style="width: 10%; height: 10%" />
+                        <div class="md-tile-content" layout="row" layout-padding layout-align="center start">
+                            <h3>{{ guitar.Company }}</h3>
+                        </div>
+                        <!--<md-button class="md-raised" ng-click="removeFavorite(guitar)">
+                            Remove from favorites
+                        </md-button>-->
+                        <md-button class="md-fab right md-raised" aria-label="Photos" ng-click="removeFavorite(guitar)">
+                            <!--<md-icon md-svg-src="libs/material-design-icons/notification/svg/production/ic_event_busy_48px.svg" class="" aria-label=""></md-icon>-->
+                            <md-icon md-font-library="material-icons" class="md-light md-48">clear</md-icon>
+                            <!--<span class="glyphicon glyphicon-remove-circle" style="width: 24px; height: 24px;"></span>-->
+                            <md-tooltip>
+                                Remove
+                            </md-tooltip>
+                        </md-button>
+                    </div>
+                    <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
+                    <div layout="column" layout-fill class="expanded">
+                        <span>{{ guitar.Model }}</span>
+                        <br />
+                        <span>{{ guitar.Description }}</span>
+                    </div>
+                </md-item-content>
+                <md-divider class="divider-inset" ng-if="!$last"></md-divider>
+            </md-item>
+        </div>
+    </md-content>
+</div>

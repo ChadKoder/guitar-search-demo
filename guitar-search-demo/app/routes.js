@@ -22,7 +22,7 @@ module.exports = function (app) {
         /*todo: need to remove by ids*/
         var deleteMe = req.body;
 
-        models.Guitar.remove(deleteMe, function(err) {
+        models.Guitar.remove({ Company: deleteMe.Company, Model: deleteMe.Model}, function(err) {
             if (err) {
                 console.log('Failed to delete guitar: ' + JSON.stringify(deleteMe));
             }
