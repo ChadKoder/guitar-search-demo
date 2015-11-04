@@ -13,11 +13,11 @@
     var guitarServiceResponse = 'response';
 
     beforeEach(function () {
-        angular.mock.module('guitarSearchApp');
+        angular.mock.module('SearchCtrl');
+        angular.mock.module('ngRoute');
+        angular.mock.module('guitarService');
 
-        
-        
-        inject(function($injector, $controller) {
+        inject(function ($injector, $controller) {
             guitarService = $injector.get('guitarService');
             $http = $injector.get('$http');
             $httpBackend = $injector.get('$httpBackend');
@@ -30,7 +30,7 @@
                 guitarService: guitarService
             });
 
-            guitarService.getAll = jasmine.createSpy('getAllSpy').and.callFake(function () {
+            guitarService.getSearchResults = jasmine.createSpy('getAllSpy').and.callFake(function () {
                 return {
                     then: function (callback) {
                         return callback([{ test: 'test' }]);
@@ -38,7 +38,7 @@
                 };
             });
             
-            //spyOn(ctrl, 'getFavorites').and.callThrough();
+            spyOn(ctrl, 'getFavorites').and.callThrough();
 
             $httpBackend.expectGET(getUrl)
               .respond(fakeHttpPromise);
@@ -71,7 +71,7 @@
     describe('$scope.search()', function() {
         beforeEach(function () {
             spyOn(ctrl, 'flagFavorites').and.callThrough();
-            spyOn(ctrl, 'getFavorites').and.callThrough();
+            $scope.searchText = 'txt';
             $scope.search();
         });
 
@@ -80,7 +80,7 @@
         });
 
         it('should call guitarService.getAll()', function() {
-            expect(guitarService.getAll).toHaveBeenCalled();
+            expect(guitarService.getSearchResults).toHaveBeenCalledWith('txt');
         });
 
         it('should call ctrl.flagFavorites()', function () {

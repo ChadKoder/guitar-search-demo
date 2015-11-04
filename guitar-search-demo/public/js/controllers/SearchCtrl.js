@@ -20,8 +20,8 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
         }
     };
 
-    $scope.custom = { name: 'bold', description: 'grey', last_modified: 'grey' };
-    $scope.sortable = ['Company', 'Model', 'Price'];
+    //$scope.custom = { name: 'bold', description: 'grey', last_modified: 'grey' };
+    //$scope.sortable = ['Company', 'Model', 'Price'];
     //$scope.thumbs = 'ImgUrl';
     //$scope.count = 3;
    

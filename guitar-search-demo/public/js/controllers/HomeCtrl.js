@@ -1,5 +1,5 @@
 ﻿//js/controllers/HomeCtrl.js
-angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$route', '$mdSidenav', '$mdToast', function ($scope, $http, $route, $mdSidenav, $mdToast) {
+angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
     var ctrl = this;
     $scope.guitars = null;
  
@@ -39,41 +39,41 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$rout
         if (current.left && last.right) current.right = false;
         last = angular.extend({}, current);
     }
-    $scope.showCustomToast = function () {
-        $mdToast.show({
-            controller: 'ToastCtrl',
-            templateUrl: 'toast-template.html',
-            parent: $document[0].querySelector('#toastBounds'),
-            hideDelay: 6000,
-            position: $scope.getToastPosition()
-        });
-    };
-    $scope.showSimpleToast = function () {
-        $mdToast.show(
-          $mdToast.simple()
-            .content('Simple Toast!')
-            .position($scope.getToastPosition())
-            .hideDelay(3000)
-        );
-    };
+    //$scope.showCustomToast = function () {
+    //    $mdToast.show({
+    //        controller: 'ToastCtrl',
+    //        templateUrl: 'toast-template.html',
+    //        parent: $document[0].querySelector('#toastBounds'),
+    //        hideDelay: 6000,
+    //        position: $scope.getToastPosition()
+    //    });
+    //};
+    //$scope.showSimpleToast = function () {
+    //    $mdToast.show(
+    //      $mdToast.simple()
+    //        .content('Simple Toast!')
+    //        .position($scope.getToastPosition())
+    //        .hideDelay(3000)
+    //    );
+    //};
 
-    $scope.closeToast = function () {
-        /*todo: is this redundant?*/
-        $mdToast.hide();
-    };
+    //$scope.closeToast = function () {
+    //    /*todo: is this redundant?*/
+    //    $mdToast.hide();
+    //};
 
     $scope.removeFavorite = function (guitar) {
         ctrl.delete(guitar);
-        var toast = $mdToast.simple()
-              .content('Favorite removed.')
-              .action('X')
-              .highlightAction(false)
-              .position($scope.getToastPosition());
-        $mdToast.show(toast).then(function (response) {
-            if (response == 'X') {
-                $mdToast.close();                
-            }
-        });
+        //var toast = $mdToast.simple()
+        //      .content('Favorite removed.')
+        //      .action('X')
+        //      .highlightAction(false)
+        //      .position($scope.getToastPosition());
+        //$mdToast.show(toast).then(function (response) {
+        //    if (response == 'X') {
+        //        $mdToast.close();                
+        //    }
+        //});
 
 
     };

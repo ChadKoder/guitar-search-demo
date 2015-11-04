@@ -1,10 +1,6 @@
 ﻿<!-- public/views/home.html-->
 <h1 class="h1">Favorite Guitars</h1>
 
-<i class="material-icons">face</i>
-
-<md-icon md-font-library="material-icons" class="md-light md-48">face</md-icon> 
-
 <div ng-show="guitars.length === 0 ">No favorites found...</div>
 <div id="md-table-template" ng-hide="guitars.length === 0">
     <md-content layout="row" flex layout-align="center center" layout-fill>
@@ -19,13 +15,13 @@
                         <div class="md-tile-content" layout="row" layout-padding layout-align="center start">
                             <h3>{{ guitar.Company }}</h3>
                         </div>
-                        <!--<md-button class="md-raised" ng-click="removeFavorite(guitar)">
-                            Remove from favorites
-                        </md-button>-->
                         <md-button class="md-fab right md-raised" aria-label="Photos" ng-click="removeFavorite(guitar)">
                             <!--<md-icon md-svg-src="libs/material-design-icons/notification/svg/production/ic_event_busy_48px.svg" class="" aria-label=""></md-icon>-->
-                            <md-icon md-font-library="material-icons" class="md-light md-48">clear</md-icon>
+                            <!--<md-icon md-font-library="material-icons" class="">highlight_remove</md-icon>--> 
                             <!--<span class="glyphicon glyphicon-remove-circle" style="width: 24px; height: 24px;"></span>-->
+                            <!--<ng-md-icon icon="send"></ng-md-icon>--> 
+
+                            <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon> 
                             <md-tooltip>
                                 Remove
                             </md-tooltip>
