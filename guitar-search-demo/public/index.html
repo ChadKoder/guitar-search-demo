@@ -6,17 +6,8 @@
         <base href="/">
 
         <title>Guitar Finder</title>
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="libs/angular-material/angular-material.css">
-        <link rel="stylesheet" href="libs/angular-material/angular-material.layouts.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>--> 
+        
         <link rel="stylesheet" href="css/styles.less">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script> 
-
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">-->
         <!--  <meta name="viewport" content="initial-scale=1" />-->
         <!-- JS -->
@@ -27,6 +18,7 @@
         <script src="libs/angular-animate/angular-animate.js"></script>
         <script src="libs/angular-material/angular-material.js"></script>
         <script src="libs/less/dist/less.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
 
         <script src="libs/underscore/underscore.js"></script>
         <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
@@ -38,30 +30,21 @@
         <script src="js/controllers/ToastCtrl.js"></script>
         <!-- SERVICES -->
         <script src="js/services/guitarService.js"></script>
-        <script src="js/directives/mdColresize.js"></script>
-        <script src="js/directives/mdTable.js"></script>
-        <script src="js/filters/startFrom.js"></script>
         <!--<script src="../app/models.js"></script>-->
 
         <script src="js/appRoutes.js"></script>
         <script src="js/app.js"></script>
         <!--  <script src=”//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js”></script>-->
-
+        <!-- CSS -->
+        <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="libs/angular-material/angular-material.css">
+        <link rel="stylesheet" href="libs/angular-material/angular-material.layouts.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     </head>
     <body ng-app="guitarSearchApp">
-      
-            <!--<nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Dashboard</a>
-                </div> 
-                <ul class="nav navbar-nav">
-                    <div ng-bind="test123"></div>
-                    <li><a href="/search">Search</a></li>
-                </ul>
-            </nav>-->
-         
-        <div class="">
+        <div>
             <md-toolbar layout="column" class="md-tall">
                 <span flex="flex"></span>
                 <div class="md-toolbar-tools">
