@@ -50,8 +50,7 @@ module.exports = function(grunt) {
 //      files: ['public/**/*.html']
   //  },
     jshint: {
-      //files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-	  files: ['Gruntfile.js', 'public/js/**/*.js','config/*.js', 'app/*.js'],//, 'public/js/controllers/*.js', 'public/js/services/*.js'],	  
+	  files: ['Gruntfile.js', 'public/js/**/*.js','config/*.js', 'app/*.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -108,6 +107,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat'); 
   grunt.loadNpmTasks('grunt-karma');
+  // grunt.loadNpmTasks('karma-jasmine');
       
  // grunt.registerTask('test', ['jshint']);//, 'qunit']);
 
