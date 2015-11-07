@@ -15,24 +15,32 @@ angular.module('guitarService', []).factory('guitarService', ['$http', function 
     };
 
     self.getSearchResults = function (searchText) {
+        var url;
+
+        if (searchText) {
+            url = self.buildSearchUrl(searchText);
+        } else {
+            url = self.getAllUrl();
+        }
+
         return $http({
             method: "JSONP",
-            url: self.buildSearchUrl(searchText),
+            url: url,
         }).then(function (response) {
             return response.data;
         });
     };
 
-    self.buildSearchUrl = function(searchText) {
+    self.getAllUrl = function() {
+        return baseUrl + '?' + jsonCallback;
+    };
+
+    self.buildSearchUrl = function (searchText) {
         return baseUrl + self.buildSearchParameter(searchText) + '&' + jsonCallback;
     };
 
     self.buildSearchParameter = function (text) {
-        if (text) {
-            return '?searchText=' + text.split(' ').join('+');
-        }
-
-        return '?searchText=';
+        return '?searchText=' + text.split(' ').join('+');
     };
 
     return self;
