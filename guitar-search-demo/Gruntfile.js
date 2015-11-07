@@ -79,7 +79,7 @@ module.exports = function(grunt) {
 				'public/libs/angular-resource/angular-resource.js',
 				'public/libs/underscore/underscore.js',
 				'public/js/**/*.js',
-				'src/tests/**/*.js',
+				'tests/**/*.js',
 				'config/*.js' ,
 				'public/libs/angular-bootstrap/ui-bootstrap.js'
 				],
