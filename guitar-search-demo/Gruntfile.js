@@ -1,70 +1,71 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    concat: {
-      options: {
-        separator: ';'
-      },
-      dist: {       	 
-          src: ['public/libs/angular/*.js',
-              'public/libs/angular-route/*.js',
-              'public/libs/angular-resource/*.js',
+	pkg: grunt.file.readJSON('package.json'),
+	concat: {
+	  options: {
+		separator: ';'
+	  },
+	  dist: {       	 
+		  src: ['public/libs/angular/*.js',
+			  'public/libs/angular-route/*.js',
+			  'public/libs/angular-resource/*.js',
 			  'public/libs/angular-animate/*.js',
-              'public/libs/jquery/*.js',
-              'public/libs/underscore/*.js',
-              'public/libs/bootstrap/*.js',
-              'public/libs/angular-bootstrap/*.js',
-              'public/js/**/*.js',
-              'config/*.js'
+			  'public/libs/jquery/*.js',
+			  'public/libs/underscore/*.js',
+			  'public/libs/bootstrap/*.js',
+			  'public/libs/angular-bootstrap/*.js',
+			  'public/js/**/*.js',
+			  'config/*.js'
 		],	 
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-    },
-    uglify: {
-      options: {
+		dest: 'dist/<%= pkg.name %>.js'
+	  }
+	},
+	uglify: {
+	  options: {
 		  bare_returns: true,
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
-      dist: {
-        files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
-      },
-      less: {
-          // production config is also available
-          development: {
-              options: {
-                  // Specifies directories to scan for @import directives when parsing. 
-                  // Default value is the directory of the source, which is probably what you want.
-                  paths: ["public/css/"],
-              },
-              files: {
-                  // compilation.css  :  source.less
-                  "public/css/style.css": "public/css/styles.css"
-              }
-          },
-      },
-    },
-    //qunit: {
+		banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+	  },
+	  dist: {
+		files: {
+		  'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+		}
+	  }	  
+	},
+	less: {
+	    // production config is also available
+	    development: {
+	        options: {
+	            // Specifies directories to scan for @import directives when parsing. 
+	            // Default value is the directory of the source, which is probably what you want.
+	            paths: ["public/css/", "public/libs/lesshat/build"],
+	        },
+	        files: {
+	            // compilation.css  :  source.less
+	            "public/css/style.css": "public/css/styles.less",
+	            "public/libs/lesshat/build/lesshat.css": "public/css/lesshat.less"
+	        }
+	    },
+	},
+	//qunit: {
 //      files: ['public/**/*.html']
   //  },
-    jshint: {
+	jshint: {
 	  files: ['Gruntfile.js', 'public/js/**/*.js','config/*.js', 'app/*.js'],
-      options: {
-        // options here to override JSHint defaults
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true,
-          document: true
-        }
-      }
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint']//, 'qunit']
-    },
+	  options: {
+		// options here to override JSHint defaults
+		globals: {
+		  jQuery: true,
+		  console: true,
+		  module: true,
+		  document: true
+		}
+	  }
+	},
+	watch: {
+	  files: ['<%= jshint.files %>'],
+	  tasks: ['jshint']//, 'qunit']
+	},
 	karma: {
 		unit: {
 			options: {
@@ -105,12 +106,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat'); 
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-karma');
   // grunt.loadNpmTasks('karma-jasmine');
-      
+	  
  // grunt.registerTask('test', ['jshint']);//, 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'karma', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'karma', 'concat', 'less', 'watch', 'uglify']);
 
 };
