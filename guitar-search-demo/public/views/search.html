@@ -1,42 +1,66 @@
-﻿<!-- public/views/search.html -->
-<div ng-show="searchError">Search could not complete due to an error.</div>
-<!--<md-content class="md-padding">
-    <form ng-submit="$event.preventDefault()">
-        <!--   <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.</p>-->
-    
-        
+﻿<!-- public/views/search.html -->     
+<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>-->
+
+
+
 <form layout layout-sm="column" ng-submit="search();">
-    <md-input-container flex>
+    <md-input-container flex="50">
         <label>Search for a guitar</label>
         <input ng-model="searchText">
     </md-input-container>
 </form>
+
+<div ng-show="searchError">Search could not complete due to an error.</div>
+
+<div ng-show="searching">
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+    </div>
+</div>
+
 <div ng-show="allGuitars.length === 0"> No results found...</div>
-<div ng-show="allGuitars.length > 0">Total results:{{ allGuitars.length}}</div>
-<md-content layout="row" flex layout-align="center center" layout-fill ng-hide="allGuitars.length === 0 || !allGuitars">
+<div ng-show="allGuitars.length > 0">Total results:{{ allGuitars.length }}</div>
+
+<div layout="row" flex layout-align="center center" layout-fill ng-hide="allGuitars.length === 0 || !allGuitars">
     <div flex="100" class="content" ui-view>
-        <md-tooltip md-direction="left">
-            Expand
-        </md-tooltip>
         <md-item ng-repeat="guitar in allGuitars" class="item md-table-content-row"
-                 ng-class="{ 'selected-item': $index == selectedUserIndex}">
-            <md-item-content class="user tile"
-                             ng-class="{'selected md-whiteframe-z2': $index == selectedUserIndex}"
-                             layout="column">
-                <div layout="row" layout-padding ng-click="selectUserIndex($index)" class="folded">
-                    <img ng-src="{{guitar.ImgUrl}}" style="width: 10%; height: 10%"/>
+                    ng-class="{ 'selected-item': $index == selectedGuitarIndex}">
+            <md-item-content class="guitar tile"
+                                ng-class="{'selected md-whiteframe-z2': $index == selectedGuitarIndex}"
+                                layout="column">
+                <div layout="row" layout-padding ng-click="selectGuitarIndex($index)" class="folded">
+                    <img ng-src="{{ guitar.ImgUrl }}" style="width: 10%; height: 10%" />
 
                     <div class="md-tile-content" layout="row" layout-padding layout-align="center start">
                         <h3>{{ guitar.Company }}</h3>
                     </div>
-                    <div class="md-tile-content" layout="column" layout-align="start center">
-                        <md-checkbox ng-checked="guitar.isFavorite" ng-click="toggleFavorite($event, guitar)">
-                            <span ng-if="guitar.isFavorite">selected</span>
-                        </md-checkbox>
+                        
+                    <div layout="row" flex="15" style="height: 45px; max-width:5px;">
+                        <md-button class="md-raised" ng-click="toggleFavorite($event, guitar)" ng-class="{'md-primary':!guitar.isFavorite, 'md-warn':guitar.isFavorite}">                                    
+                            <span ng-show="!guitar.isFavorite">Add Favorite</span>
+                            <span ng-show="guitar.isFavorite">Remove Favorite</span>
+                        </md-button>
+                                                                          
+                        <!--<md-button>
+                            <md-icon md-font-library="material-icons" ng-style="{color: 'green', 'font-size':'36px', height:'36px'}">
+                                face
+                            </md-icon>
+                        </md-button>-->
+                       
+                        </md-button>
+                        
+                        
+
+                        <md-tooltip ng-show="guitar.isFavorite" md-direction="bottom-center">
+                            Remove Favorite
+                        </md-tooltip>
+                        <md-tooltip ng-show="!guitar.isFavorite" md-direction="bottom-center">
+                            Add Favorite
+                        </md-tooltip>
                     </div>
-                    
                 </div>
-                <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
+                <md-divider layout-fill ng-show="$index == selectedGuitarIndex"></md-divider>
                 <div layout="column" layout-fill class="expanded">
                     <span>{{ guitar.Model}}</span>
                     <br />
@@ -46,4 +70,4 @@
             <md-divider class="divider-inset" ng-if="!$last"></md-divider>
         </md-item>
     </div>
-</md-content>
+</div>
