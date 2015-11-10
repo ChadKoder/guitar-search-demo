@@ -17,12 +17,12 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$rout
 
     $scope.selectedUserIndex = undefined;
 
-    $scope.selectUserIndex = function (index) {
-        if ($scope.selectedUserIndex !== index) {
-            $scope.selectedUserIndex = index;
+    $scope.selectGuitarIndex = function (index) {
+        if ($scope.selectedGuitarIndex !== index) {
+            $scope.selectedGuitarIndex = index;
         }
         else {
-            $scope.selectedUserIndex = undefined;
+            $scope.selectedGuitarIndex = undefined;
         }
     };
     /*begin toast*/

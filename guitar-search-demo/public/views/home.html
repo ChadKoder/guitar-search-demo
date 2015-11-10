@@ -3,31 +3,32 @@
 
 <div ng-show="guitars.length === 0 ">No favorites found...</div>
 <div id="md-table-template" ng-hide="guitars.length === 0">
+    
     <md-content layout="row" flex layout-align="center center" layout-fill>
         <div flex="100" class="content" ui-view>
             <md-item ng-repeat="guitar in guitars" class="item md-table-content-row"
-                     ng-class="{ 'selected-item': $index == selectedUserIndex}">
-                <md-item-content class="user tile"
-                                 ng-class="{'selected md-whiteframe-z2': $index == selectedUserIndex}"
+                     ng-class="{ 'selected-item': $index == selectedGuitarIndex}">
+                <md-item-content class="guitar tile"
+                                 ng-class="{'selected .md-whiteframe-z5': $index == selectedGuitarIndex}"
                                  layout="column">
-                    <div layout="row" layout-padding ng-click="selectUserIndex($index)" class="folded">
+                    <div layout="row" layout-padding ng-click="selectGuitarIndex($index)" class="folded">
                         <img ng-src="{{guitar.ImgUrl}}" style="width: 10%; height: 10%" />
                         <div class="md-tile-content" layout="row" layout-padding layout-align="center start">
                             <h3>{{ guitar.Company }}</h3>
                         </div>
-                        <md-button class="md-fab right md-raised" aria-label="Photos" ng-click="removeFavorite(guitar)">
+                        <md-button class="md-fab right md-raised" ng-click="removeFavorite(guitar)">
                             <!--<md-icon md-svg-src="libs/material-design-icons/notification/svg/production/ic_event_busy_48px.svg" class="" aria-label=""></md-icon>-->
-                            <!--<md-icon md-font-library="material-icons" class="">highlight_remove</md-icon>--> 
                             <!--<span class="glyphicon glyphicon-remove-circle" style="width: 24px; height: 24px;"></span>-->
-                            <!--<ng-md-icon icon="send"></ng-md-icon>--> 
+                            <!--<ng-md-icon icon="send"></ng-md-icon>-->
+                            <!-- <md-icon md-font-library="material-icons">delete</md-icon>-->
+                            <md-icon md-font-library="material-icons">face</md-icon>
 
-                            <md-icon md-font-library="material-icons" class="md-light md-48">delete</md-icon> 
                             <md-tooltip>
                                 Remove
                             </md-tooltip>
                         </md-button>
                     </div>
-                    <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
+                    <md-divider layout-fill ng-show="$index == selectedGuitarIndex"></md-divider>
                     <div layout="column" layout-fill class="expanded">
                         <span>{{ guitar.Model }}</span>
                         <br />
