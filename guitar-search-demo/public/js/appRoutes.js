@@ -10,9 +10,13 @@ var module = angular.module('appRoutes', []).config([
                 templateUrl: 'views/search.html',
                 controller: 'SearchCtrl'
             })
-            .when('/toast-template', {
-                templateUrl: 'views/toast-template.html',
-                controller: 'ToastCtrl'
+            //.when('/toast-template', {
+            //    templateUrl: 'views/toast-template.html',
+            //    controller: 'ToastCtrl'
+            //})
+            .when('/admin', {
+                templateUrl: 'views/admin.html',
+                controller: 'AdminCtrl'
             })
             .otherwise({
                 redirectTo: 'index.html'

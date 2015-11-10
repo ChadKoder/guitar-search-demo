@@ -8,8 +8,6 @@
         <title>Guitar Finder</title>
         
         <link rel="stylesheet" href="css/styles.less">
-        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">-->
-        <!--  <meta name="viewport" content="initial-scale=1" />-->
         <!-- JS -->
         <script src="libs/angular/angular.js"></script>
         <script src="libs/angular-route/angular-route.js"></script>
@@ -18,6 +16,7 @@
         <script src="libs/angular-animate/angular-animate.js"></script>
         <script src="libs/angular-material/angular-material.js"></script>
         <script src="libs/less/dist/less.js"></script>
+        <!--<script src="libs/svg-morpheus/source/js/svg-morpheus.js"></script>-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.6.0/angular-material-icons.min.js"></script>
 
         <script src="libs/underscore/underscore.js"></script>
@@ -27,41 +26,48 @@
         <!-- ANGULAR CUSTOM -->
         <script src="js/controllers/HomeCtrl.js"></script>
         <script src="js/controllers/SearchCtrl.js"></script>
+        <script src="js/controllers/AdminCtrl.js"></script>
         <script src="js/controllers/ToastCtrl.js"></script>
         <!-- SERVICES -->
         <script src="js/services/guitarService.js"></script>
-        <!--<script src="../app/models.js"></script>-->
 
+        <!--DIRECTIVES-->
         <script src="js/appRoutes.js"></script>
         <script src="js/app.js"></script>
-        <!--  <script src=”//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js”></script>-->
         <!-- CSS -->
         <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/custom.css">
         <link rel="stylesheet" href="libs/angular-material/angular-material.css">
         <link rel="stylesheet" href="libs/angular-material/angular-material.layouts.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     </head>
-    <body ng-app="guitarSearchApp">
+    <body ng-app="guitarSearchApp"> 
         <div>
             <md-toolbar layout="column" class="md-tall">
-                <span flex="flex"></span>
                 <div class="md-toolbar-tools">
                     <div layout="row" flex="flex" class="fill-height">
-                        <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb"><md-button><a href="/">Favorites</a></md-button></div><span flex="flex" ng-hide="toggleSearch"></span>
-                        <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb"><md-button><a href="/search">Search</a></md-button></div><span flex="flex" ng-hide="toggleSearch"></span>
-                        <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">
-                            <input type="text" ng-model="search" />
-                        </md-input-container>
-                        <div layout="row" class="md-toolbar-item md-tools"><a href="href" ng-click="toggleSearch = !toggleSearch" class="md-button md-default-theme"><i class="ion-android-search"></i></a></div>
+                        <div class="md-toolbar-item md-breadcrumb">
+                            <md-button><a href="/">Favorites</a></md-button>
+                        </div>                           
+                            <div class="md-toolbar-item md-breadcrumb">
+                                <md-button>
+                                    <a href="/search">Search</a>
+                                </md-button>
+                            </div>                            
+                            <div class="md-toolbar-item md-breadcrumb">
+                                <md-button>
+                                    <a href="/admin">Administration</a>
+                                </md-button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </md-toolbar>
+                </md-toolbar>
+            </div>
 
-        </div>
-        
-        <div ng-view></div>
+        <div ng-view flex></div>
+
     </body>
 </html>
 
