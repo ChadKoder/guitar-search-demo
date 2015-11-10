@@ -1,15 +1,32 @@
 ﻿//js/app.js
 var app = angular.module('guitarSearchApp', ['ngRoute', 'appRoutes', 'ngResource', 'ngMaterial', 'ngAnimate', 'ngAria',
-    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'guitarService', 'ui.bootstrap']);
+    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'AdminCtrl', 'guitarService', 'ui.bootstrap']);
 
 
 // Configure Angular Materials Theme
 app.config(function ($mdThemingProvider) {
 
-    $mdThemingProvider.theme('default')
-       .primaryPalette('indigo')
-       .accentPalette('grey')
-       .warnPalette('red');
+    $mdThemingProvider.theme('blue')
+       .primaryPalette('green', {
+           'default': '900', // by default use shade 900 from the grey palette for primary intentions
+       })
+        .accentPalette('green')
+        .warnPalette('red')
+        .backgroundPalette('blue-grey');
+
+    //$mdThemingProvider.setDefaultTheme('');
+
+
+    //$mdThemingProvider
+    //.theme('default')
+    //.primaryPalette('indigo')
+    //.accentPalette('pink')
+    //.warnPalette('red')
+    //.backgroundPalette('blue-grey')
+    //$mdThemingProvider.theme('default')
+    //   .primaryPalette('indigo')
+    //   .accentPalette('grey')
+    //   .warnPalette('red');
 
     //$mdThemingProvider.theme('default').primaryPalette('indigo');
 
