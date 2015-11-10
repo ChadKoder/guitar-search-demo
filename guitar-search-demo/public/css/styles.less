@@ -1,9 +1,4 @@
-md-content {
-  background-color: #ECEFF1!important;
-  padding: 30px;
-}
-
-.selected-item ~ .item .user,
+/*.selected-item ~ .item .user,
 .item:first-child .user {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
@@ -15,60 +10,74 @@ md-content {
 .item:last-child .user {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
-}
+}*/ 
+
 .item .tile .folded {
   cursor: pointer;
 }
-.item .user {
+.item .guitar {
   background-color: white;
   transition: all 500ms;
 }
-.item .user h3,
-.item .user p {
+.item .guitar h3,
+.item .guitar p {
   transition: all 500ms;
 }
-.item .user p {
+.item .guitar p {
   opacity: 1;
   height: inherit;
 }
-.item .user p.ng-hide {
+.item .guitar p.ng-hide {
   opacity: 0;
   height: 0;
-}
-.item .user.selected {
+} 
+.item .guitar.selected {
   margin: 30px -15px;
   border-radius: 2px;
 }
-.item .user.selected .expanded {
-  visibility: visible;
+  
+
+.item .guitar.selected .expanded {
+  visibility: visible;  
 }
-.item .user.selected .expanded,
-.item .user.selected .expanded > * {
+.item .guitar.selected .expanded,
+.item .guitar.selected .expanded > * {
   max-height: 700px;
   opacity: 1;
 }
-.item .user.selected .expanded .md-label {
+.item .guitar.selected .expanded .md-label {
   border: hidden;
 }
-.item .user.selected h3 {
+.item .guitar.selected h3 {
   font-size: 1.8em;
 }
-.item .user .expanded {
+.item .guitar .expanded {
   visibility: hidden;
 }
-.item .user .expanded,
-.item .user .expanded > * {
+.item .guitar .expanded,
+.item .guitar .expanded > * {
   max-height: 0;
   opacity: 0;
   transition: all 500ms;
 }
-.item .user .expanded .split {
+.item .guitar .expanded .split {
   padding: 10px;
 }
-.item .user .face {
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  width: 48px;
-  height: 48px;
-  margin: 16px;
+
+.parent {
+    display: block;
 }
+
+.container {
+  text-align: center;
+} 
+
+/*.md-button.md-icon-button {
+    margin: 0 0.6rem;
+    height: 4.8rem;
+    min-width: 0;
+    line-height: 4.8rem;
+    padding-left: 0;
+    padding-right: 0;
+    width: 4.8rem;
+}*/
