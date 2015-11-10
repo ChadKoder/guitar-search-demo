@@ -2,7 +2,7 @@
 angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$route', function ($scope, $http, $route) {
     var ctrl = this;
     $scope.guitars = null;
- 
+     
     ctrl.getFavorites = function () {
         $http.get('/guitars').success(function (result) {
             $scope.guitars = result;
@@ -15,8 +15,16 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$rout
         });
     };
 
-    ctrl.getFavorites();
-   
+    $scope.selectedUserIndex = undefined;
+
+    $scope.selectUserIndex = function (index) {
+        if ($scope.selectedUserIndex !== index) {
+            $scope.selectedUserIndex = index;
+        }
+        else {
+            $scope.selectedUserIndex = undefined;
+        }
+    };
     /*begin toast*/
     var last = {
         bottom: false,
@@ -73,9 +81,12 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$rout
         //    if (response == 'X') {
         //        $mdToast.close();                
         //    }
-        //});
-
+        //});       
 
     };
+
     /*end toast*/
+
+
+    ctrl.getFavorites();
 }]);
