@@ -42,8 +42,7 @@ module.exports = function(grunt) {
 	        },
 	        files: {
 	            // compilation.css  :  source.less
-	            "public/css/style.css": "public/css/styles.less",
-	            "public/libs/lesshat/build/lesshat.css": "public/css/lesshat.less"
+	            "public/css/style.css": "public/css/styles.less"
 	        }
 	    },
 	},
@@ -113,6 +112,6 @@ module.exports = function(grunt) {
 	  
  // grunt.registerTask('test', ['jshint']);//, 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'karma', 'concat', 'less', 'watch', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'karma', 'concat', 'less', 'uglify']);
 
 };
