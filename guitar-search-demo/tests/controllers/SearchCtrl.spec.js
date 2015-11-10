@@ -9,9 +9,7 @@
             success: function () { }
         },
         getUrl = '/guitars';
-
-    var guitarServiceResponse = 'response';
-
+        
     beforeEach(function () {
         angular.mock.module('SearchCtrl');
         angular.mock.module('ngRoute');
@@ -29,30 +27,52 @@
                 $http: $http,
                 guitarService: guitarService
             });
-
-            guitarService.getSearchResults = jasmine.createSpy('getAllSpy').and.callFake(function () {
-                return {
-                    then: function (callback) {
-                        return callback([{ test: 'test' }]);
-                    }
-                };
-            });
             
             spyOn(ctrl, 'getFavorites').and.callThrough();
+            spyOn(ctrl, 'init');
 
             $httpBackend.expectGET(getUrl)
               .respond(fakeHttpPromise);
-
+            
         });
     });
-      
-    it('should set $scope.searchText to null', function () {
-        expect($scope.searchText).toBe(null);
-    });
+    
+    /*TODO: Fix this test for ctrl.init being called on load of the SearchCtrl*/
+    //it('should call ctrl.init()', function () {
+    //    expect(ctrl.init).toHaveBeenCalled();
+    //});
+    
 
-    it('should set $scope.searchError to false', function() {
-        expect($scope.searchError).toBe(false);
-    });
+    describe('ctrl.init()', function () {
+        beforeEach(function () {
+            ctrl.init();
+        });
+
+        it('should set $scope.allGuitars to null', function () {
+            expect($scope.allGuitars).toBe(null);
+        });
+
+        it('should set $scope.selectedGuitarIndex to undefined', function () {
+            expect($scope.selectedGuitarIndex).toBe(undefined);
+        });
+
+        it('should set $scope.favoriteGuitars to empty', function () {
+            expect($scope.favoriteGuitars).toEqual({});
+        });
+
+        it('should set $scope.searching to false', function () {
+            expect($scope.searching).toBeFalsy();
+        });
+
+        it('should set $scope.searchText to null', function () {
+            expect($scope.searchText).toBe(null);
+        });
+
+        it('should set $scope.searchError to false', function () {
+            expect($scope.searchError).toBe(false);
+        });
+    });       
+    
 
     describe('ctrl.flagFavorites()', function() {
         beforeEach(function() {
@@ -67,11 +87,15 @@
             expect($scope.allGuitars[2].isFavorite).toBe(true);
         });
     });
-
+    
     describe('$scope.search()', function() {
-        beforeEach(function () {
-            spyOn(ctrl, 'flagFavorites').and.callThrough();
+        beforeEach(function () {            
             $scope.searchText = 'txt';
+            $scope.allGuitars = 'notEmpty';
+            $scope.searching = false;
+            $scope.searchError = true;
+            spyOn(guitarService, 'getSearchResults').and.callThrough();
+            
             $scope.search();
         });
 
@@ -81,18 +105,37 @@
 
         it('should call guitarService.getAll()', function() {
             expect(guitarService.getSearchResults).toHaveBeenCalledWith('txt');
+        });      
+
+        it('should set $scope.allGuitars to null to clear results', function () {
+            expect($scope.allGuitars).toBe(null);
+        });
+
+        it('should set $scope.searching to true', function () {
+            expect($scope.searching).toBeTruthy();
+        });
+
+        it('should set $scope.searchError to false', function () {
+            expect($scope.searchError).toBeFalsy();
+        });      
+    });
+
+    describe('ctrl.searchSuccess()', function () {
+        beforeEach(function () {
+            spyOn(ctrl, 'flagFavorites');
+            ctrl.searchSuccess('result');
+        });
+
+        it('should set $scope.allGuitars', function () {
+            expect($scope.allGuitars).toBe('result');
+        });
+
+        it('should set $scope.searching to false', function () {
+            expect($scope.searching).toBeFalsy();
         });
 
         it('should call ctrl.flagFavorites()', function () {
             expect(ctrl.flagFavorites).toHaveBeenCalled();
-        });
-      
-    });
-
-    describe('$scope.searchSuccess()', function () {
-        it('should set $scope.allGuitars', function () {
-            ctrl.searchSuccess(guitarServiceResponse);
-            expect($scope.allGuitars).toBe('response');
         });
     });
 
@@ -109,6 +152,10 @@
 
         it('should set $scope.searchError to true', function () {
             expect($scope.searchError).toBe(true);
+        });
+
+        it('should set $scope.searching to null', function () {
+            expect($scope.searching).toBeFalsy();
         });
     });
 });
