@@ -1,6 +1,6 @@
 ﻿//js/app.js
 var app = angular.module('guitarSearchApp', ['ngRoute', 'appRoutes', 'ngResource', 'ngMaterial', 'ngAnimate', 'ngAria',
-    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'AdminCtrl', 'guitarService', 'ui.bootstrap']);
+    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'AdminCtrl', 'guitarService', 'ToastCtrl', 'ngMdIcons', 'ui.bootstrap']);
 
 
 // Configure Angular Materials Theme
@@ -10,7 +10,7 @@ app.config(function ($mdThemingProvider) {
        .primaryPalette('green', {
            'default': '900', // by default use shade 900 from the grey palette for primary intentions
        })
-        .accentPalette('green')
+        .accentPalette('indigo')
         .warnPalette('red')
         .backgroundPalette('blue-grey');
 
