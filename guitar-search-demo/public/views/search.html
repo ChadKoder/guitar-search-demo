@@ -1,8 +1,5 @@
 ﻿<!-- public/views/search.html -->     
 <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>-->
-
-
 
 <form layout layout-sm="column" ng-submit="search();">
     <md-input-container flex="50">
@@ -36,28 +33,23 @@
                         <h3>{{ guitar.Company }}</h3>
                     </div>
                         
-                    <div layout="row" flex="15" style="height: 45px; max-width:5px;">
-                        <md-button class="md-raised" ng-click="toggleFavorite($event, guitar)" ng-class="{'md-primary':!guitar.isFavorite, 'md-warn':guitar.isFavorite}">                                    
-                            <span ng-show="!guitar.isFavorite">Add Favorite</span>
-                            <span ng-show="guitar.isFavorite">Remove Favorite</span>
-                        </md-button>
-                                                                          
-                        <!--<md-button>
-                            <md-icon md-font-library="material-icons" ng-style="{color: 'green', 'font-size':'36px', height:'36px'}">
-                                face
-                            </md-icon>
-                        </md-button>-->
-                       
-                        </md-button>
-                        
-                        
+                    <div layout="row" flex="15" style="height: 45px; max-width:5px;">                     
+        
+                        <md-button class="md-primary" ng-click="toggleFavorite($event, guitar)" aria-label="false">
+                            <md-icon ng-style="{color: btnColor(guitar)}" class="save" md-svg-src="../img/icons/ic_done_all_48px.svg"></md-icon>
 
-                        <md-tooltip ng-show="guitar.isFavorite" md-direction="bottom-center">
-                            Remove Favorite
-                        </md-tooltip>
-                        <md-tooltip ng-show="!guitar.isFavorite" md-direction="bottom-center">
-                            Add Favorite
-                        </md-tooltip>
+                            <md-tooltip md-direction="bottom">
+                                <div ng-show="guitar.isFavorite">
+                                    Remove Favorite
+                                </div>
+                                <div ng-show="!guitar.isFavorite">
+                                    Add Favorite
+                                </div>
+                            </md-tooltip>
+
+                        </md-button>
+
+                        
                     </div>
                 </div>
                 <md-divider layout-fill ng-show="$index == selectedGuitarIndex"></md-divider>

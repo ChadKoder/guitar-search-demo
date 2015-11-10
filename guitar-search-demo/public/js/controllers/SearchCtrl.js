@@ -1,8 +1,15 @@
 ﻿//public/js/controllers/SearchCtrl
 angular.module('SearchCtrl', []).controller('SearchCtrl', [
-    '$scope', '$http', 'guitarService', function ($scope, $http, guitarService) {
+    '$scope', '$http', 'guitarService', '$mdToast', function ($scope, $http, guitarService, $mdToast) {
     var ctrl = this;
-    
+    $scope.btnColor = function (guitar) {
+        if (guitar.isFavorite) {
+            return 'green';
+        } else {
+            return 'grey';
+        }
+    };
+
     $scope.selectGuitarIndex = function (index) {
         if ($scope.selectedGuitarIndex !== index) {
             $scope.selectedGuitarIndex = index;
@@ -59,22 +66,45 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
     ctrl.removeFavoriteGuitar = function (guitar) {
         $http.put('/update', guitar).success(function () {
             console.log('guitar successfully removed');
+            
+            var toast = $mdToast.simple()
+                  .content('Favorite removed.')
+                  .action('X')
+                  .highlightAction(false)
+                  .position($scope.getToastPosition());
+            $mdToast.show(toast).then(function (response) {
+                if (response == 'X') {
+                    $mdToast.close();                
+                }
+            });  
         });
     };
 
     ctrl.addFavoriteGuitar = function (guitar) {
-        $http.post('/addFavorite', guitar);
-    };
+        $http.post('/addFavorite', guitar).success(function () {            
+            var toast = $mdToast.simple()
+                 .content('Favorite added.')
+                 .action('X')
+                 .highlightAction(false)
+                 .position($scope.getToastPosition());
+            $mdToast.show(toast).then(function (response) {
+                if (response == 'X') {
+                    $mdToast.close();
+                }
+            });
+        });
+    };   
 
     $scope.toggleFavorite = function ($event, guitar) {
         $event.preventDefault();
         $event.stopPropagation();
+
         if (guitar.isFavorite) {
-            ctrl.removeFavoriteGuitar(guitar);
             guitar.isFavorite = false;
+            ctrl.removeFavoriteGuitar(guitar);            
         } else {
-            ctrl.addFavoriteGuitar(guitar);
             guitar.isFavorite = true;
+            ctrl.addFavoriteGuitar(guitar);            
         }
     };
 
@@ -87,6 +117,66 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
         $scope.selectedGuitarIndex = undefined;
     };
 
-    ctrl.init();
+        /*begin toast*/
+    var last = {
+        bottom: false,
+        top: true,
+        left: false,
+        right: true
+    };
 
+    $scope.toastPosition = angular.extend({}, last);
+    $scope.getToastPosition = function () {
+        sanitizePosition();
+        return Object.keys($scope.toastPosition)
+          .filter(function (pos) { return $scope.toastPosition[pos]; })
+          .join(' ');
+    };
+
+    function sanitizePosition() {
+        var current = $scope.toastPosition;
+        if (current.bottom && last.top) current.top = false;
+        if (current.top && last.bottom) current.bottom = false;
+        if (current.right && last.left) current.left = false;
+        if (current.left && last.right) current.right = false;
+        last = angular.extend({}, current);
+    }
+
+        $scope.showCustomToast = function () {
+            $mdToast.show({
+                controller: 'ToastCtrl',
+                templateUrl: 'toast-template.html',
+                parent: $document[0].querySelector('#toastBounds'),
+                hideDelay: 6000,
+                position: $scope.getToastPosition()
+            });
+        };
+
+        $scope.showSimpleToast = function () {
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Simple Toast!')
+                .position($scope.getToastPosition())
+                .hideDelay(3000)
+            );
+        };
+
+        $scope.closeToast = function () {
+            /*todo: is this redundant?*/
+            $mdToast.hide();
+        };
+
+        //var toast = $mdToast.simple()
+        //      .content('Favorite removed.')
+        //      .action('X')
+        //      .highlightAction(false)
+        //      .position($scope.getToastPosition());
+        //$mdToast.show(toast).then(function (response) {
+        //    if (response == 'X') {
+        //        $mdToast.close();                
+        //    }
+        //});  
+        /*End Toast*/
+
+    ctrl.init();
 }]);

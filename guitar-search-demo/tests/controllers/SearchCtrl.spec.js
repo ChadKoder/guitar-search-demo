@@ -5,6 +5,7 @@
         guitarService = {},
         $http,
         $httpBackend,
+        $mdToast,
         fakeHttpPromise= {
             success: function () { }
         },
@@ -22,10 +23,13 @@
             rootScope = $injector.get('$rootScope');
             $scope = rootScope.$new();
 
+            $mdToast = jasmine.createSpyObj('$mdToast', ['showSimple']);
+
             ctrl = $controller('SearchCtrl', {
                 $scope: $scope,
                 $http: $http,
-                guitarService: guitarService
+                guitarService: guitarService,
+                $mdToast: $mdToast
             });
             
             spyOn(ctrl, 'getFavorites').and.callThrough();
