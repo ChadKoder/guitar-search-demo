@@ -1,31 +1,19 @@
 ﻿//public/js/controllers/SearchCtrl
 angular.module('SearchCtrl', []).controller('SearchCtrl', [
-    '$scope', '$http', 'guitarService', function($scope, $http, guitarService) {
+    '$scope', '$http', 'guitarService', function ($scope, $http, guitarService) {
     var ctrl = this;
-    $scope.searchText = null;
-    $scope.searchError = false;
-    $scope.favoriteGuitars = {};
-    $scope.allGuitars = null;
-    $scope.isDisabled = true;
-    $scope.toggleSearch = false;
-
-    $scope.selectedUserIndex = undefined;
-
-    $scope.selectUserIndex = function (index) {
-        if ($scope.selectedUserIndex !== index) {
-            $scope.selectedUserIndex = index;
+    
+    $scope.selectGuitarIndex = function (index) {
+        if ($scope.selectedGuitarIndex !== index) {
+            $scope.selectedGuitarIndex = index;
         }
         else {
-            $scope.selectedUserIndex = undefined;
+            $scope.selectedGuitarIndex = undefined;
         }
     };
-
-    //$scope.custom = { name: 'bold', description: 'grey', last_modified: 'grey' };
-    //$scope.sortable = ['Company', 'Model', 'Price'];
-    //$scope.thumbs = 'ImgUrl';
-    //$scope.count = 3;
    
     ctrl.searchSuccess = function (result) {
+        $scope.searching = false;
         $scope.allGuitars = result;
         ctrl.flagFavorites();
     };
@@ -36,12 +24,16 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
         });
     };
 
-    ctrl.searchFailure = function() {
+    ctrl.searchFailure = function () {
+        $scope.searching = false;
         $scope.searchError = true;
         $scope.allGuitars = null;
     };
 
     $scope.search = function () {
+        $scope.searching = true;
+        $scope.searchError = false;
+        $scope.allGuitars = null;
         ctrl.getFavorites();
         guitarService.getSearchResults($scope.searchText).then(ctrl.searchSuccess, ctrl.searchFailure);
     };
@@ -85,4 +77,16 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
             guitar.isFavorite = true;
         }
     };
+
+    ctrl.init = function () {
+        $scope.searchText = null;
+        $scope.searchError = false;
+        $scope.favoriteGuitars = {};
+        $scope.allGuitars = null;
+        $scope.searching = false;
+        $scope.selectedGuitarIndex = undefined;
+    };
+
+    ctrl.init();
+
 }]);
