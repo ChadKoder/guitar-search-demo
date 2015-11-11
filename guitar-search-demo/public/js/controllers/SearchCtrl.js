@@ -3,9 +3,6 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
     '$scope', '$http', 'guitarService', '$mdToast', function ($scope, $http, guitarService, $mdToast) {
 
         var ctrl = this, myIcons = [];
-        //svgMorpheus options
-        var options = { "rotation": "random", "easing": "elastic-in-out", "duration": "2000" };
-
 
         ctrl.init = function () {
             $scope.searchText = null;
@@ -13,8 +10,7 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
             $scope.favoriteGuitars = {};
             $scope.allGuitars = null;
             $scope.searching = false;
-
-            $scope.test = true;
+            $scope.repeatComplete = false;
             $scope.selectedGuitarIndex = undefined;
         };
 
@@ -30,13 +26,21 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
         ctrl.searchSuccess = function (result) {
             $scope.searching = false;
             $scope.allGuitars = result;
-            ctrl.flagFavorites();               
+            ctrl.flagFavorites();
         };  
     
         $scope.$on('onRepeatLast', function (scope, element, attrs) {
+            var options = { "rotation": "clock", "easing": "cubic-in-out", "duration": "100" };
+
             for (var i = 0; i < $scope.allGuitars.length; i++) {
                 myIcons.push(new SVGMorpheus('#icons' + i));
+                if ($scope.allGuitars[i].isFavorite) {
+                    myIcons[i].to('checkedIcon', options);
+                } else {
+                    myIcons[i].to('uncheckedIcon', options);
+                }
             }
+            $scope.repeatComplete = true;
         });
 
         ctrl.flagFavorites = function() {
@@ -126,11 +130,13 @@ angular.module('SearchCtrl', []).controller('SearchCtrl', [
         };
 
         ctrl.showCheckedIcon = function ($index, icons) {
+            var options = { "rotation": "clock", "easing": "quart-in-out", "duration": "1000" };
             myIcons[$index].to('checkedIcon', options);
         };
 
-        ctrl.showUncheckedIcon = function ($index, icons) {        
-            myIcons[$index].to('uncheckedIcon', options);        
+        ctrl.showUncheckedIcon = function ($index, icons) {
+            var options = { "rotation": "counterclock", "easing": "quart-in-out", "duration": "1000" };
+            myIcons[$index].to('uncheckedIcon', options);
         };
 
 

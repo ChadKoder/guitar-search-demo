@@ -7,6 +7,7 @@
     </md-input-container>
 </form>
 
+
 <div ng-show="searchError">Search could not complete due to an error.</div>
 
 <div ng-show="searching">
@@ -19,7 +20,7 @@
 <div ng-show="allGuitars.length > 0">Total results:{{ allGuitars.length }}</div>
 
 <div layout="row" flex layout-align="center center" layout-fill ng-hide="allGuitars.length === 0 || !allGuitars">
-    <div flex="100" class="content" ui-view>
+    <div flex="col-" class="content" ui-view>
         <md-item ng-repeat="guitar in allGuitars" on-last-repeat
                  ng-class="{ 'selected-item': $index == selectedGuitarIndex}" class="item md-table-content-row">
             <md-item-content class="guitar tile"
@@ -33,13 +34,13 @@
                     </div>
 
                     <svg id="icons{{$index}}" ng-click="toggleFavorite($event, $index, guitar)">
-                        <g id="uncheckedIcon">
-                            <path ng-show="!guitar.isFavorite" style="fill:grey" d="M36 14l-2.83-2.83-12.68 12.69 2.83 2.83L36 14zm8.49-2.83L23.31 32.34 14.97 24l-2.83 2.83L23.31 38l24-24-2.82-2.83zM.83 26.83L12 38l2.83-2.83L3.66 24 .83 26.83z" />
+                        <g id="uncheckedIcon" display="none">                            
+                            <path style="fill:grey" d="M18 32.34L9.66 24l-2.83 2.83L18 38l24-24-2.83-2.83z" />
                         </g>
-                        <g id="checkedIcon">
+                        <g id="checkedIcon" display="none">
                             <path ng-show="guitar.isFavorite" style="fill:green" d="M36 14l-2.83-2.83-12.68 12.69 2.83 2.83L36 14zm8.49-2.83L23.31 32.34 14.97 24l-2.83 2.83L23.31 38l24-24-2.82-2.83zM.83 26.83L12 38l2.83-2.83L3.66 24 .83 26.83z" />
                         </g>
-                    </svg>                  
+                    </svg>
                 </div>
                 <md-divider layout-fill ng-show="$index == selectedGuitarIndex"></md-divider>
                 <div layout="column" layout-fill class="expanded">
