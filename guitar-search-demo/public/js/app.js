@@ -1,6 +1,6 @@
 ﻿//js/app.js
 var app = angular.module('guitarSearchApp', ['ngRoute', 'appRoutes', 'ngResource', 'ngMaterial', 'ngAnimate', 'ngAria',
-    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'AdminCtrl', 'guitarService', 'ToastCtrl', 'ngMdIcons', 'ui.bootstrap']);
+    'ToastCtrl', 'HomeCtrl', 'SearchCtrl', 'AdminCtrl', 'onLastRepeat', 'guitarService', 'ToastCtrl', 'ngMdIcons', 'ui.bootstrap']);
 
 
 // Configure Angular Materials Theme

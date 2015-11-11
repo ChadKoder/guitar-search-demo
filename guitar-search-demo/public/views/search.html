@@ -1,5 +1,4 @@
-﻿<!-- public/views/search.html -->     
-<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+﻿<!-- public/views/search.html -->    
 
 <form layout layout-sm="column" ng-submit="search();">
     <md-input-container flex="50">
@@ -21,36 +20,26 @@
 
 <div layout="row" flex layout-align="center center" layout-fill ng-hide="allGuitars.length === 0 || !allGuitars">
     <div flex="100" class="content" ui-view>
-        <md-item ng-repeat="guitar in allGuitars" class="item md-table-content-row"
-                    ng-class="{ 'selected-item': $index == selectedGuitarIndex}">
+        <md-item ng-repeat="guitar in allGuitars" on-last-repeat
+                 ng-class="{ 'selected-item': $index == selectedGuitarIndex}" class="item md-table-content-row">
             <md-item-content class="guitar tile"
-                                ng-class="{'selected md-whiteframe-z2': $index == selectedGuitarIndex}"
-                                layout="column">
+                             ng-class="{'selected md-whiteframe-z2': $index == selectedGuitarIndex}"
+                             layout="column">
                 <div layout="row" layout-padding ng-click="selectGuitarIndex($index)" class="folded">
                     <img ng-src="{{ guitar.ImgUrl }}" style="width: 10%; height: 10%" />
 
                     <div class="md-tile-content" layout="row" layout-padding layout-align="center start">
                         <h3>{{ guitar.Company }}</h3>
                     </div>
-                        
-                    <div layout="row" flex="15" style="height: 45px; max-width:5px;">                     
-        
-                        <md-button class="md-primary" ng-click="toggleFavorite($event, guitar)" aria-label="false">
-                            <md-icon ng-style="{color: btnColor(guitar)}" class="save" md-svg-src="../img/icons/ic_done_all_48px.svg"></md-icon>
 
-                            <md-tooltip md-direction="bottom">
-                                <div ng-show="guitar.isFavorite">
-                                    Remove Favorite
-                                </div>
-                                <div ng-show="!guitar.isFavorite">
-                                    Add Favorite
-                                </div>
-                            </md-tooltip>
-
-                        </md-button>
-
-                        
-                    </div>
+                    <svg id="icons{{$index}}" ng-click="toggleFavorite($event, $index, guitar)">
+                        <g id="uncheckedIcon">
+                            <path ng-show="!guitar.isFavorite" style="fill:grey" d="M36 14l-2.83-2.83-12.68 12.69 2.83 2.83L36 14zm8.49-2.83L23.31 32.34 14.97 24l-2.83 2.83L23.31 38l24-24-2.82-2.83zM.83 26.83L12 38l2.83-2.83L3.66 24 .83 26.83z" />
+                        </g>
+                        <g id="checkedIcon">
+                            <path ng-show="guitar.isFavorite" style="fill:green" d="M36 14l-2.83-2.83-12.68 12.69 2.83 2.83L36 14zm8.49-2.83L23.31 32.34 14.97 24l-2.83 2.83L23.31 38l24-24-2.82-2.83zM.83 26.83L12 38l2.83-2.83L3.66 24 .83 26.83z" />
+                        </g>
+                    </svg>                  
                 </div>
                 <md-divider layout-fill ng-show="$index == selectedGuitarIndex"></md-divider>
                 <div layout="column" layout-fill class="expanded">
